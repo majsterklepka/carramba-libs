@@ -1,2 +1,2 @@
-# carramba-libs
-library for validate importand number in Polish administation
+# Project carramba-libs
+library for validate important number in Polish administation: PESEL, NIP REGON, IBAN
