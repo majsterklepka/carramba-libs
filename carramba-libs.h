@@ -8,8 +8,12 @@
  *
  */
 
-#ifndef CARRAMBA_LIBS_H
-#define CARRAMBA_LIBS_H
+#ifndef CARRAMBA_LIBS_H_
+#define CARRAMBA_LIBS_H_
+
+#define INFO_FORMAT_PLAINTEXT	0
+#define INFO_FORMAT_MARKDOWN	10
+#define INFO_FORMAT_KRAMDOWN	20
 
 int iban_validation_test(const char *iban);
 
@@ -19,4 +23,10 @@ int pesel_validation_test(const char *pesel);
 
 int nip_validation_test(const char *nip);
 
-#endif /* CARRAMBA_LIBS_H */
+const char *version();
+
+const char *info(int format);
+
+int test(const char *number); 
+
+#endif /* CARRAMBA_LIBS_H_ */
