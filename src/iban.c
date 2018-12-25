@@ -14,7 +14,6 @@
 #include <gmp.h>
 #include <assert.h>
 #include <carramba-libs.h>
-#include "config.h"
 
 //macro verifying the length of the IBAN number
 #define V(cc, exp) if (!strncmp(iban, cc, 2)) return len == exp

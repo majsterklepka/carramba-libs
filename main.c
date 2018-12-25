@@ -10,3 +10,16 @@
 
 #include <carramba-libs.h>
 #include "config.h"
+
+
+const char *version()
+{	
+	return (const char*)VERSION;
+}
+
+const char *info(int format);
+
+int test(const char *number)
+{
+
+} 
