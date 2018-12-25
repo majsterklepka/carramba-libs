@@ -15,6 +15,10 @@
 #define INFO_FORMAT_MARKDOWN	10
 #define INFO_FORMAT_KRAMDOWN	20
 
+#define RETURN_CODE_VALID 	0
+#define	RETURN_CODE_INVALID	-1
+
+
 int iban_validation_test(const char *iban);
 
 int regon_validation_test(const char *regon);
