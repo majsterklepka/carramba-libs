@@ -4,7 +4,7 @@
  * Created on: 28 grudnia, 2018
  *    License: GPLv3 or later
  *     Author: Paweł Sobótka <48721262935pl@gmail.com>
- *  Copyright: © Paweł Sobótka, 2018, all rights reserved
+ *  Copyright: © Paweł Sobótka, 2017-2019, all rights reserved
  *        URL: https://github.com/majsterklepka/carramba-libs.git
  *    Company: mgr inż. Paweł Sobótka, self-employed
  *    Address: POLAND, masovian, Szydłowiec, 26-500
