@@ -13,5 +13,5 @@ ACLOCAL_AMFLAGS = -I m4
 
 lib_LTLIBRARIES = libcarramba.la
 libcarramba_la_SOURCES = carramba-libs.h main.c src/nip.c src/pesel.c src/regon.c src/iban.c
-libcarramba_la_LDFLAGS = $(GMP_LIBS) -version-info 1:0:0
+libcarramba_la_LDFLAGS = $(GMP_LIBS) -version-info 0:1:0
 include_HEADERS = carramba-libs.h

@@ -9,9 +9,6 @@
 /* build vendor */
 #undef BUILD_VENDOR
 
-/* link to gmp library */
-#undef GMP_LIBS
-
 /* Define to 1 if you have the <dlfcn.h> header file. */
 #undef HAVE_DLFCN_H
 
