@@ -54,7 +54,7 @@ int nip_validation_test(const char *nip)
 	else
 		for(int i = 0; i < 10; i++)
 			input[i] = *(nip + i);
-	input[10] = '\0'
+	input[10] = '\0';
 	
 	len = strlen(nip);		
 
