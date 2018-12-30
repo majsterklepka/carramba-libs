@@ -12,6 +12,8 @@
  *
  */
 
+#define IBAN_C_ 	1
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

@@ -1,5 +1,5 @@
 /*
- * src/regon.c
+ * regon.c
  *
  * Created on: 28 grudnia, 2018
  *    License: GPLv3 or later
@@ -12,11 +12,12 @@
  *
  */
 
+#define REGON_C_	1
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-#include <malloc.h>
 #include <carramba-libs.h>
 
 int regon_validation_test(const char *regon)
@@ -35,6 +36,12 @@ int regon_validation_test(const char *regon)
 		if (!isdigit(regon[i]))
 			return RETURN_CODE_INVALID;
 	}
+	for ( int i = 0; i < 14; i++)
+		sum[i] = 0;
+
+	for ( int i = 0; i < 15; i++)
+		input[i] = '\0';
+
 	if ( len == 7 )
 	{
 		int i = 0;

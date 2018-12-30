@@ -12,12 +12,11 @@
  *
  */
 
-
+#define NIP_C_	1
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <malloc.h>
 #include <ctype.h>
 #include <carramba-libs.h>
 
@@ -25,7 +24,7 @@
 int nip_validation_test(const char *nip)
 {
 
-	char input[10];
+	char input[11];
 
 	int waga[] = {6,5,7,2,3,4,5,6,7};
 
@@ -55,6 +54,7 @@ int nip_validation_test(const char *nip)
 	else
 		for(int i = 0; i < 10; i++)
 			input[i] = *(nip + i);
+	input[10] = '\0'
 	
 	len = strlen(nip);		
 
