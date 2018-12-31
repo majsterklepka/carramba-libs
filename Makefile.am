@@ -20,3 +20,5 @@ libcarramba_la_SOURCES = carramba-libs.h main.c src/nip.c src/pesel.c src/regon.
 libcarramba_la_LDFLAGS = $(GMP_LIBS) -version-info $(PACKAGE_VERSION_MAJOR):$(PACKAGE_VERSION_MICRO):$(PACKAGE_VERSION_MINOR)
 include_HEADERS = carramba-libs.h
 pkgconfig_DATA = carramba-$(API_VERSION).pc
+
+CLEANFILES = carramba-$(API_VERSION).pc
