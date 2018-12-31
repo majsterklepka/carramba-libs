@@ -1,0 +1,13 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+ 
+ 
+Name: @PACKAGE_NAME@
+Description: Carramba Libs - library to validate IBAN, NIP, REGON, PESEL
+Version: @PACKAGE_VERSION@
+Libs: -L${libdir} -Wl,-rpath -Wl,${libdir} -lcarramba -lcarramba -lgmp
+Cflags: -I${includedir}
+
+

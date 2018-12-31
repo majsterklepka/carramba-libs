@@ -1,8 +1,16 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
+# Release version
+m4_define([package_version_major],[0])
+m4_define([package_version_minor],[0])
+m4_define([package_version_micro],[1])
+
+# API version
+m4_define([api_version],[1])
+
 AC_PREREQ([2.69])
-AC_INIT([Carramba libs], [0.0.1], [starywandal@onet.pl])
+AC_INIT([Carramba Libs], [package_version_major.package_version_minor.package_version_micro], [starywandal@onet.pl])
 AM_INIT_AUTOMAKE([-Wall -Werror foreign subdir-objects])
 AM_PROG_AR
 AC_CONFIG_SRCDIR([main.c])
@@ -11,6 +19,16 @@ AC_CONFIG_MACRO_DIR([m4])
 
 # Checks for programs.
 AC_PROG_CC
+
+# Dependencies
+PKG_PROG_PKG_CONFIG
+PKG_INSTALLDIR
+
+
+AC_SUBST([PACKAGE_VERSION_MAJOR],package_version_major)
+AC_SUBST([PACKAGE_VERSION_MINOR],package_version_minor)
+AC_SUBST([PACKAGE_VERSION_MICRO],package_version_micro)
+AC_SUBST([API_VERSION],api_version)
 
 LT_INIT(disable-static)
 
@@ -33,4 +51,6 @@ AC_CHECK_HEADERS([locale.h stdlib.h string.h])
 AC_FUNC_MALLOC
 
 AC_CONFIG_FILES([Makefile])
+AC_CONFIG_FILES([carramba-$API_VERSION.pc:carramba.pc.in],[API_VERSION='$API_VERSION'])
+
 AC_OUTPUT
