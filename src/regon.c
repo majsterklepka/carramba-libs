@@ -24,6 +24,7 @@ int regon_validation_test(const char *regon)
 {
 	int waga14[] = {2,4,8,5,0,9,7,3,6,1,2,4,8};
 	int waga9[] = {8,9,2,3,4,5,6,7};
+	int waga7[] = {2,3,4,5,6,7};
 	int len = 0;
 	int sum[14];
 	char input[15];
@@ -36,34 +37,23 @@ int regon_validation_test(const char *regon)
 		if (!isdigit(regon[i]))
 			return RETURN_CODE_INVALID;
 	}
+
+	if ( len != 7 || len != 9 || len != 14)
+		return RETURN_CODE_INVALID;
+
 	for ( int i = 0; i < 14; i++)
 		sum[i] = 0;
 
 	for ( int i = 0; i < 15; i++)
 		input[i] = '\0';
 
-	if ( len == 7 )
+	int i = 0;
+	while ( i < len )
 	{
-		int i = 0;
-		for (i = 0; i < 9; i++)
-		{	
-			if (i == 0 || i == 1)
-				input[i] = '0';
-			else{
-				input[i] = *(regon + i);
-			}
-		}
-		input[i] = '\0';	
-	}else if(len == 9 || len == 14 )
-	{
-		int i = 0;
-		while ( i < len )
-		{
-			input[i] = *(regon + i);
-			i++;
-		}
-		input[i] = '\0';				
-	} 
+		input[i] = *(regon + i);
+		i++;
+	}
+	input[i] = '\0';				
 	len = strlen(input);
 	for (int i = 0; i < (len - 1); i++)
 	{
@@ -71,6 +61,8 @@ int regon_validation_test(const char *regon)
 			sum[i] = ((int)input[i] - 48) * waga9[i];
 		else if ( len == 14 )
 			sum[i] = ((int)input[i] - 48) * waga14[i];
+		else if ( len == 7)
+			sum[i] = ((int)input[i] - 48) * waga7[i];
 		wynik += sum[i];			 
 	}
 	rest = wynik % 11;
@@ -81,6 +73,10 @@ int regon_validation_test(const char *regon)
 	} else if ( len == 14 )
 	{
 		if ( rest == ((int)input[13] - 48) || rest == 10 )
+			return RETURN_CODE_VALID;
+	} else if (len == 7)
+	{
+		if ( rest == ((int)input[6] - 48) || rest == 10 )
 			return RETURN_CODE_VALID;
 	}
 	return RETURN_CODE_INVALID;	
