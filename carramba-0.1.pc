@@ -5,9 +5,9 @@ includedir=${prefix}/include
  
  
 Name: Carramba Libs
-Description: Carramba Libs - library to validate IBAN, NIP, REGON, PESEL
+Description: Carramba Libs - library for validate IBAN, NIP, REGON, PESEL
 Version: 0.0.1
-Libs: -L${libdir} -Wl,-rpath -Wl,${libdir} -lcarramba -lcarramba -lgmp
+Libs: -L${libdir} -Wl,-rpath -Wl,${exec_prefix}/lib -lcarramba  -lgmp
 Cflags: -I${includedir}
 
 

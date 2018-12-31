@@ -636,6 +636,7 @@ ac_subst_vars='am__EXEEXT_FALSE
 am__EXEEXT_TRUE
 LTLIBOBJS
 LIBOBJS
+CARRAMBA_LIBS
 CPP
 LT_SYS_LIBRARY_PATH
 OTOOL64
@@ -665,6 +666,7 @@ build_vendor
 build_cpu
 build
 LIBTOOL
+DESCRIPTION
 API_VERSION
 PACKAGE_VERSION_MICRO
 PACKAGE_VERSION_MINOR
@@ -4925,7 +4927,9 @@ PACKAGE_VERSION_MINOR=0
 
 PACKAGE_VERSION_MICRO=1
 
-API_VERSION=1
+API_VERSION=0.1
+
+DESCRIPTION="$PACKAGE_NAME - library for validate IBAN, NIP, REGON, PESEL"
 
 
 case `pwd` in
@@ -13063,6 +13067,10 @@ _ACEOF
 cat >>confdefs.h <<_ACEOF
 #define BUILD_OS "$build_os"
 _ACEOF
+
+
+carramba_libs="-Wl,-rpath -Wl,${libdir} -lcarramba $GMP_LIBS"
+CARRAMBA_LIBS=$carramba_libs
 
 
 # Checks for header files.

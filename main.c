@@ -30,7 +30,7 @@ const char *info(int format)
 	char *info1, *info2, *line;
 	char *info3, *info4, *url, *license;
 	char *output;
-	line = "<------...------>";
+	line = "<------***INFO***------>";
 	url = "https://github.com/majsterklepka/carramba-libs.git";
 	license = "General Public License version 3.0 or later (GNU GPLv3 or later)";
 	asprintf(&info1, "%s build at: %s %s by %s", PACKAGE_STRING, __DATE__, __TIME__, BUILDER);

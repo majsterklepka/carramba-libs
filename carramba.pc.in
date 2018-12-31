@@ -5,9 +5,9 @@ includedir=@includedir@
  
  
 Name: @PACKAGE_NAME@
-Description: Carramba Libs - library to validate IBAN, NIP, REGON, PESEL
+Description: @DESCRIPTION@
 Version: @PACKAGE_VERSION@
-Libs: -L${libdir} -Wl,-rpath -Wl,${libdir} -lcarramba -lcarramba -lgmp
+Libs: -L${libdir} @CARRAMBA_LIBS@
 Cflags: -I${includedir}
 
 
