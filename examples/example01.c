@@ -13,6 +13,8 @@
  */
 
 #include <carramba-libs.h>
+#include <readline/readline.h>
+#include <readline/history.h>
 #include <malloc.h>
 
 
@@ -20,23 +22,31 @@ int main(int argc, char **argv)
 {
 	char *input;
 	int rest = 0;
+	int k = 0;
 	const char *about = info(0);
 	printf("%s", about);
-	input = (char*)malloc(30*sizeof(char));
-	printf("Wprowadź swój numer (PESEL|NIP|REGON|IBAN): ");
-	scanf("%s", input);
+	input = (char*)malloc(64*sizeof(char));
+	input = readline("Wprowadź swój numer (PESEL|NIP|REGON|IBAN): ");
+	int len = strlen(input);
+	if (len == 0 )
+	{
+		printf("Błąd wprowadzania...\nKończę działanie!\n");
+		free(input);
+		exit(EXIT_FAILURE);
+		
+	}	
 	rest = test(input);
-	int len = strlen(input);	
 	if (rest == RETURN_CODE_VALID && len == 11)
-		printf("Prawidłowy numer PESEL\n");
+		printf("Numer: %s to prawidłowy numer PESEL\n", input);
 	else if ( rest == RETURN_CODE_VALID && len == 10 )
-		printf("Prawidłowy numer NIP!\n");
+		printf("Numer: %s to prawidłowy numer NIP!\n", input);
 	else if (rest == RETURN_CODE_VALID && (len == 7 || len == 9 || len == 14))
-		printf("Prawidłowy numer REGON\n");
+		printf("Numer: %s to prawidłowy numer REGON\n", input);
 	else if ( rest == RETURN_CODE_VALID && len > 14 )
 		printf("Prawidłowy numer IBAN!\n");
 	else
 		printf("Wprowadziłeś nieprawidłowy numer!\nKończę działanie!\n");
-	
+	if (input)
+		free(input);		
 	exit(EXIT_SUCCESS);
 }		
