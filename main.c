@@ -13,10 +13,7 @@
  */
 #define _GNU_SOURCE
 
-#include <stdio.h>
-#include <stdlib.h>
 #include <locale.h>
-#include <string.h>
 #include <carramba-libs.h>
 #include "config.h"
 
@@ -31,28 +28,42 @@ const char *info(int format)
 	char *info1, *info2, *line;
 	char *info3, *info4, *url, *license;
 	char *output;
-	line = ">------***INFO***------<";
+	line = ">--------*INFO*--------<";
 	url = "https://github.com/majsterklepka/carramba-libs.git";
 	license = "General Public License version 3.0 or later (GNU GPLv3 or later)";
-	if ( format == INFO_FORMAT_HTML )
+	if ( format == INFO_FORMAT_MARKUP )
 	{
 		asprintf(&info1, "<p><i>%s</i> build at: %s %s by <b>%s</b></p>", PACKAGE_STRING, __DATE__, __TIME__, BUILDER);
-		asprintf(&info2, "<p>Build machine: %s, %s, %s</p>", BUILD_VENDOR, BUILD_CPU, BUILD_OS); 
-		asprintf(&info3, "<p>GitHub Package Repository URL:\n<br/>[%s](%s \"GitHub Repository\")</p>", url, url);
+
+		asprintf(&info2, "<p>Build machine: %s, %s, %s</p>", BUILD_VENDOR, BUILD_CPU, BUILD_OS);
+ 
+		asprintf(&info3, "<p>GitHub Package Repository URL:\n<br/><a href=\"%s\" title=\"GitHub Repository\">%s</a></p>", url, url);
+
 		asprintf(&info4, "<p>%s</p>", license);
+
 		asprintf(&output, "<p>%s\n<br />%s\n%s\n%s\n%s\n%<br />s\n", line, info1, info2, info4, info3, line);
+
 	}else if ( format == INFO_FORMAT_MARKDOWN )
 	{
 		asprintf(&info1, "_%s_ build at: %s %s by *%s*", PACKAGE_STRING, __DATE__, __TIME__, BUILDER);
-		asprintf(&info2, "*Build machine:* %s, %s, %s", BUILD_VENDOR, BUILD_CPU, BUILD_OS); 
+
+		asprintf(&info2, "*Build machine:* %s, %s, %s", BUILD_VENDOR, BUILD_CPU, BUILD_OS);
+ 
 		asprintf(&info3, "_GitHub Package Repository URL:_   [%s](%s \"GitHub Repository\")   ", url, url);
+
 		asprintf(&info4, "_%s_", license);
+
 		asprintf(&output, "%s   \n%s\n%s\n%s\n%s\n%s   \n", line, info1, info2, info4, info3, line);
+
 	}else{
 		asprintf(&info1, "%s build at: %s %s by %s", PACKAGE_STRING, __DATE__, __TIME__, BUILDER);
-		asprintf(&info2, "Build machine: %s, %s, %s", BUILD_VENDOR, BUILD_CPU, BUILD_OS); 
+
+		asprintf(&info2, "Build machine: %s, %s, %s", BUILD_VENDOR, BUILD_CPU, BUILD_OS);
+ 
 		asprintf(&info3, "GitHub Package Repository URL:\n%s", url);
+
 		asprintf(&info4, "%s", license);
+
 		asprintf(&output, "%s\n%s\n%s\n%s\n%s\n%s\n", line, info1, info2, info4, info3, line); 
 	}
 	
@@ -62,6 +73,7 @@ const char *info(int format)
 int test(const char *number)
 {
 	int len = strlen(number);
+	
 	#if NIP_C_
 	if ( len == 10 )
 	{

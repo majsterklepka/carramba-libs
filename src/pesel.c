@@ -11,13 +11,7 @@
  * NIP(taxid): 799-169-51-12
  *
  */
-#define PESEL_C_	1
 
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <string.h>
 #include <carramba-libs.h>
 
 int pesel_validation_test(const char *pesel)

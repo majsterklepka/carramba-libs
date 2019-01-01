@@ -12,12 +12,6 @@
  *
  */
 
-#define REGON_C_	1
-
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <ctype.h>
 #include <carramba-libs.h>
 
 int regon_validation_test(const char *regon)

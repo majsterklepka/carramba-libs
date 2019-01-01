@@ -12,12 +12,6 @@
  *
  */
 
-#define IBAN_C_ 	1
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
 #include <gmp.h>
 #include <assert.h>
 #include <carramba-libs.h>
