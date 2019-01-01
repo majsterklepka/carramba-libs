@@ -34,7 +34,7 @@ const char *info(int format)
 	line = ">------***INFO***------<";
 	url = "https://github.com/majsterklepka/carramba-libs.git";
 	license = "General Public License version 3.0 or later (GNU GPLv3 or later)";
-	if ( format == INFO_FORMAT_KRAMDOWN )
+	if ( format == INFO_FORMAT_HTML )
 	{
 		asprintf(&info1, "<p><i>%s</i> build at: %s %s by <b>%s</b></p>", PACKAGE_STRING, __DATE__, __TIME__, BUILDER);
 		asprintf(&info2, "<p>Build machine: %s, %s, %s</p>", BUILD_VENDOR, BUILD_CPU, BUILD_OS); 
@@ -43,10 +43,10 @@ const char *info(int format)
 		asprintf(&output, "<p>%s\n<br />%s\n%s\n%s\n%s\n%<br />s\n", line, info1, info2, info4, info3, line);
 	}else if ( format == INFO_FORMAT_MARKDOWN )
 	{
-		asprintf(&info1, "__%s__ build at: %s %s by ***%s***", PACKAGE_STRING, __DATE__, __TIME__, BUILDER);
-		asprintf(&info2, "***Build machine:*** %s, %s, %s", BUILD_VENDOR, BUILD_CPU, BUILD_OS); 
-		asprintf(&info3, "__GitHub Package Repository URL:__   [%s](%s)   ", url, url);
-		asprintf(&info4, "__%s__", license);
+		asprintf(&info1, "_%s_ build at: %s %s by *%s*", PACKAGE_STRING, __DATE__, __TIME__, BUILDER);
+		asprintf(&info2, "*Build machine:* %s, %s, %s", BUILD_VENDOR, BUILD_CPU, BUILD_OS); 
+		asprintf(&info3, "_GitHub Package Repository URL:_   [%s](%s \"GitHub Repository\")   ", url, url);
+		asprintf(&info4, "_%s_", license);
 		asprintf(&output, "%s   \n%s\n%s\n%s\n%s\n%s   \n", line, info1, info2, info4, info3, line);
 	}else{
 		asprintf(&info1, "%s build at: %s %s by %s", PACKAGE_STRING, __DATE__, __TIME__, BUILDER);
