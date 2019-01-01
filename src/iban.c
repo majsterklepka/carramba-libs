@@ -45,48 +45,50 @@ int iban_validation_test(const char *iban)
 	mpz_t n;//biginteger - variable with converted string
 	mpz_t o;//biginteger - variable with sum modulo 97 of IBAN
 
-	int flag; /*variable used as a flag when converting
-		   from a character string to a multiple-precision variable*/	
+//----------------------------------------------------------
+
+	int flag; //variable used as a flag when converting from a character string to a multiple-precision variable	
 	
 	l = 0; //initializing the variable
 	
-	sz = strlen(iban); /*the variable s is initialized 
-			     by the length of the input string (IBAN)*/  
+	sz = strlen(iban); //the variable s is initialized by the length of the input string (IBAN)  
   
-	//a loop that counts the occurrence of letters in a string
+//----------------------------------------------------------
+
+//a loop that counts the occurrence of letters in a string
 	for (i = 0; i < sz; i++) {
 		if (!isdigit(iban[i]) && !isupper(iban[i]))
 			return RETURN_CODE_INVALID;
 		l += isupper(iban[i]);
 	}
 	
-	/*the first test to check if the length of the input string
-	  corresponds to the length of the sequence specified for the given country*/
+//----------------------------------------------------------
+
+//the first test to check if the length of the input string corresponds to the length of the sequence specified for the given country
 	if (!valid_cc(iban, sz))
 		return RETURN_CODE_INVALID;
 	
-	/*
-	  allocating memory for a variable
-          var number is the internal variable with the input string
-	*/
+//----------------------------------------------------------
+
+//allocating memory for a variable var number is the internal variable with the input string
 	char *number = (char*)malloc(sz*sizeof(char));
 
-	//checking if the variable has been correctly assigned
-	if ( number == 0 ){
+//checking if the variable has been correctly assigned
+	if ( number == NULL ){
 		fprintf(stderr, "virtual memory exceeded!\n");
 		return RETURN_CODE_INVALID;
 	}
-	
+
+//----------------------------------------------------------
+
 	strcpy(number, iban + 4);//copying the input string (without the first 4 characters)
 
-	strncpy(number + sz - 4, iban, 4);/* copying the country code and sum code to the end (eg 						     PL49).This is to enable the calculation of the total
-					     sum of the sequence in accordance with the algorithm*/
+// copying the country code and sum code to the end (eg PL49).This is to enable the calculation of the total sum of the sequence in accordance with the algorithm
+	strncpy(number + sz - 4, iban, 4);
+
+//----------------------------------------------------------
     
-	/* 
-	  allocating memory for a variable
-	  var trans is the internal variable with the input string
-	  prepared in correct form for algorythm
-	*/
+//allocating memory for a variable var trans is the internal variable with the input string prepared in correct form for algorythm
 	char *trans = (char*)malloc((sz + l)*sizeof(char));
 
 	//checking if the variable has been correctly assigned
@@ -96,6 +98,7 @@ int iban_validation_test(const char *iban)
 	}	
 	trans[sz + l + 1] = 0;// set last character to 0
 
+//----------------------------------------------------------
 	/*
 	  preparation of the correct sequence for the algorithm. 
 	  Recoding ASCII characters to obtain the correct 
@@ -110,32 +113,34 @@ int iban_validation_test(const char *iban)
 		}
 	}
 	trans[j] = '\0';//set last character to \0
+//----------------------------------------------------------
 
 	mpz_init(n); //initializing a variable with multiple precision
 	mpz_set_ui(n, 0);//adding value
 	mpz_init(o);//initializing a variable with multiple precision
 	mpz_set_ui(o, 0);//adding value
 	free(number);//freeing memory
-	
-	flag = mpz_set_str(n, trans, 10);/*converting a string to a multiple-precision number
-					   and a base of 10, var n is the result of the conversion*/
+
+//----------------------------------------------------------
+
+//converting a string to a multiple-precision number and a base of 10, var n is the result of the conversion	
+	flag = mpz_set_str(n, trans, 10);
   	
 	assert(flag == 0);//checking if the conversion was successful
 
    	mpz_mod_ui(o,n, 97UL);// sum modulo 97 
 	
 	resp = mpz_get_ui(o);//integer output
-
+//----------------------------------------------------------
 	mpz_clear(n);//variable cleaning, freeing memory 
 	mpz_clear(o);//variable cleaning, freeing memory
 	free(trans);//freeing memory
-
-	
+//----------------------------------------------------------
 	//the final test, returns 1 if the IBAN has the correct sum
 	if (resp == 1){
 		return RETURN_CODE_VALID;
 	}
-    		
+//----------------------------------------------------------    		
     return RETURN_CODE_INVALID;
 }
 

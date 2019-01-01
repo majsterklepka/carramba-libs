@@ -17,23 +17,28 @@
 int pesel_validation_test(const char *pesel)
 {
 	char input[12];
+
 	int waga[] ={1,3,7,9,1,3,7,9,1,3};
+
 	int sum[10];
-	int wynik;
-	int wynik1;
-	int rest;
-	int len;
+
+	int wynik = 0;
+
+	int wynik1 = 0;
+
+	int rest = 0;
+
+	int len = 0;
+
+//----------------------------------------------------------
 
 	for (int i = 0; i < 12; i++)
 		input[i] ='\0';
 
 	for (int i = 0; i < 10; i++)
 		sum[i] = 0;
-	
-	wynik = 0;
-	wynik1 = 0;
-	rest = 0;
-	len = 0;
+
+//----------------------------------------------------------
 
 	len = strlen(pesel);
 	
@@ -44,8 +49,12 @@ int pesel_validation_test(const char *pesel)
 		if(!isdigit(pesel[i]))
 			return RETURN_CODE_INVALID;
 	}
+
+//----------------------------------------------------------
 	
 	strcpy(input, pesel);
+
+//----------------------------------------------------------
 
 	for (int i = 0; i < 10; i++)
 	{
@@ -53,12 +62,18 @@ int pesel_validation_test(const char *pesel)
 		wynik += sum[i];
 	}
 
+//----------------------------------------------------------
+
 	rest = wynik % 10;
 	wynik1 = 10 - rest;
 	rest = wynik1 % 10;
 
+//----------------------------------------------------------
+
 	if (rest == ((int)input[10] - 48))
 		return RETURN_CODE_VALID;
+
+//----------------------------------------------------------
 
 	return RETURN_CODE_INVALID;
 }

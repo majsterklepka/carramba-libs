@@ -17,23 +17,39 @@
 int regon_validation_test(const char *regon)
 {
 	int waga14[] = {2,4,8,5,0,9,7,3,6,1,2,4,8};
+
 	int waga9[] = {8,9,2,3,4,5,6,7};
+
 	int waga7[] = {2,3,4,5,6,7};
+
 	int len = 0;
+
 	int sum[14];
+
 	char input[15];
+
 	int wynik = 0;
+
 	int rest = 0;
+
+//----------------------------------------------------------
 	
 	len = strlen(regon);
+
+//----------------------------------------------------------
+
 	for (int i = 0; i < len; i++)
 	{
 		if (!isdigit(regon[i]))
 			return RETURN_CODE_INVALID;
 	}
 
+//----------------------------------------------------------
+
 	if ( len != 7 || len != 9 || len != 14)
 		return RETURN_CODE_INVALID;
+
+//----------------------------------------------------------
 
 	for ( int i = 0; i < 14; i++)
 		sum[i] = 0;
@@ -41,14 +57,16 @@ int regon_validation_test(const char *regon)
 	for ( int i = 0; i < 15; i++)
 		input[i] = '\0';
 
-	int i = 0;
-	while ( i < len )
-	{
-		input[i] = *(regon + i);
-		i++;
-	}
-	input[i] = '\0';				
+//----------------------------------------------------------
+	
+	strcpy(input,regon)
+
+//----------------------------------------------------------
+
 	len = strlen(input);
+
+//----------------------------------------------------------
+
 	for (int i = 0; i < (len - 1); i++)
 	{
 		if ( len == 9 )		
@@ -59,20 +77,27 @@ int regon_validation_test(const char *regon)
 			sum[i] = ((int)input[i] - 48) * waga7[i];
 		wynik += sum[i];			 
 	}
+
+//----------------------------------------------------------
+
 	rest = wynik % 11;
-	if (len == 9)
+
+//----------------------------------------------------------
+
+	if ( len == 9 )
 	{
 		if ( rest == ((int)input[8] - 48) || rest == 10 )
 			return RETURN_CODE_VALID;
-	} else if ( len == 14 )
-	{
+	} else if ( len == 14 ){
 		if ( rest == ((int)input[13] - 48) || rest == 10 )
 			return RETURN_CODE_VALID;
-	} else if (len == 7)
-	{
+	} else {
 		if ( rest == ((int)input[6] - 48) || rest == 10 )
 			return RETURN_CODE_VALID;
 	}
+
+//----------------------------------------------------------
+
 	return RETURN_CODE_INVALID;	
 }
 

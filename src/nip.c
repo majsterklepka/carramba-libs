@@ -32,6 +32,7 @@ int nip_validation_test(const char *nip)
 
 	int count = 0;
 
+//----------------------------------------------------------
 
 	for (int i = 0; i < 10; i++)
 		sum[i] = 0;
@@ -42,6 +43,8 @@ int nip_validation_test(const char *nip)
 	for (int i = 0; i < 2; i++)
 		if (isalpha(nip[i]))
 			count++;
+//----------------------------------------------------------
+
 	if (count == 2)
 		for(int i = 0; i < 10; i++)
 			input[i] = *(nip + i + 2);
@@ -49,6 +52,8 @@ int nip_validation_test(const char *nip)
 		for(int i = 0; i < 10; i++)
 			input[i] = *(nip + i);
 	input[10] = '\0';
+
+//----------------------------------------------------------
 	
 	len = strlen(nip);		
 
@@ -70,15 +75,16 @@ int nip_validation_test(const char *nip)
 			sum[i] = ((int)input[i] - 48) * waga[i];
 			wynik += sum[i];
 		}
-		
 		rest = wynik % 11;
+//----------------------------------------------------------
 		if (rest == ((int)input[9] - 48) || rest == 10 )
 			return RETURN_CODE_VALID;
 		else
 			return RETURN_CODE_INVALID;
-
-
 	}
+
+//----------------------------------------------------------
+
 	return RETURN_CODE_INVALID;
 
 }
