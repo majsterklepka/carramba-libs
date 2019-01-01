@@ -1,4 +1,4 @@
-# Project carramba-libs
+# Project Carramba Libs
 library for validate important number in polish goverment administration: PESEL, NIP REGON, IBAN
 
 While checking the correctness of numbers, there is a simple rule: the whole number consists of numbers, each of these digits is multiplied by the balance and the last one, we add products and calculate the sum mod 10 (11), the final digit in the number is a checksum that must match the calculated .
