@@ -44,8 +44,6 @@
 #endif
 
 
-
-
 int iban_validation_test(const char *iban);
 
 int regon_validation_test(const char *regon);
@@ -59,5 +57,7 @@ const char *version();
 const char *info(int format);
 
 int test(const char *number); 
+
+int main();
 
 #endif /* CARRAMBA_LIBS_H_ */

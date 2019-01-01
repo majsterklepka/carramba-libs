@@ -17,6 +17,9 @@
 #include <carramba-libs.h>
 #include "config.h"
 
+char *build_date = __DATE__;
+char *build_time = __TIME__;
+
 
 const char *version()
 {	
@@ -33,7 +36,7 @@ const char *info(int format)
 	license = "General Public License version 3.0 or later (GNU GPLv3 or later)";
 	if ( format == INFO_FORMAT_MARKUP )
 	{
-		asprintf(&info1, "<p><i>%s</i> build at: %s %s by <b>%s</b></p>", PACKAGE_STRING, __DATE__, __TIME__, BUILDER);
+		asprintf(&info1, "<p><i>%s</i> build at: %s %s by <b>%s</b></p>", PACKAGE_STRING, build_date, build_time, BUILDER);
 
 		asprintf(&info2, "<p>Build machine: %s, %s, %s</p>", BUILD_VENDOR, BUILD_CPU, BUILD_OS);
  
@@ -45,7 +48,7 @@ const char *info(int format)
 
 	}else if ( format == INFO_FORMAT_MARKDOWN )
 	{
-		asprintf(&info1, "_%s_ build at: %s %s by *%s*", PACKAGE_STRING, __DATE__, __TIME__, BUILDER);
+		asprintf(&info1, "_%s_ build at: %s %s by *%s*", PACKAGE_STRING, build_date, build_time, BUILDER);
 
 		asprintf(&info2, "*Build machine:* %s, %s, %s", BUILD_VENDOR, BUILD_CPU, BUILD_OS);
  
@@ -56,7 +59,7 @@ const char *info(int format)
 		asprintf(&output, "%s   \n%s\n%s\n%s\n%s\n%s   \n", line, info1, info2, info4, info3, line);
 
 	}else{
-		asprintf(&info1, "%s build at: %s %s by %s", PACKAGE_STRING, __DATE__, __TIME__, BUILDER);
+		asprintf(&info1, "%s build at: %s %s by %s", PACKAGE_STRING, build_date, build_time, BUILDER);
 
 		asprintf(&info2, "Build machine: %s, %s, %s", BUILD_VENDOR, BUILD_CPU, BUILD_OS);
  
@@ -104,3 +107,10 @@ int test(const char *number)
 
 	return RETURN_CODE_INVALID;
 } 
+
+int main()
+{
+	const char *about = info(INFO_FORMAT_PLAINTEXT);
+	printf("%s", about);
+	exit(EXIT_SUCCESS);
+}
