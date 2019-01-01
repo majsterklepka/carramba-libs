@@ -1,4 +1,4 @@
-# Examples in C of uses carramba library
+# Examples in C of uses Carramba Libs
 
 > **example01.c:** Short explaination how library works. For work this example requires library ***readline*** and package ***readline-devel***.To build type after build and install **Carramba Libs**:  
 ```
