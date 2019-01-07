@@ -40,7 +40,7 @@ int main(int argc, char **argv)
 //---------------------------------------------------------------
 	setlocale(LC_ALL, "pl_PL.UTF-8");
 //---------------------------------------------------------------
-	const char *about = info(INFO_FORMAT_PLAINTEXT);
+	const char *about = carramba_libs_info(INFO_FORMAT_PLAINTEXT);
 	printf("%s\n", about);
 //---------------------------------------------------------------	
 	input = (char*)malloc(64*sizeof(char));
