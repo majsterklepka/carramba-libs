@@ -58,6 +58,4 @@ const char *info(int format);
 
 int test(const char *number); 
 
-int main();
-
 #endif /* CARRAMBA_LIBS_H_ */
