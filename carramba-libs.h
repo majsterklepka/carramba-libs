@@ -52,10 +52,10 @@ int pesel_validation_test(const char *pesel);
 
 int nip_validation_test(const char *nip);
 
-const char *version();
+const char *carramba_libs_version();
 
-const char *info(int format);
+const char *carramba_libs_info(int format);
 
-int test(const char *number); 
+int carramba_libs_api_test(const char *number); 
 
 #endif /* CARRAMBA_LIBS_H_ */

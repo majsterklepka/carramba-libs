@@ -30,18 +30,17 @@
 
 #include <locale.h>
 #include <carramba-libs.h>
-#include <malloc.h>
 #include "config.h"
 
 char *build_date = __DATE__;
 char *build_time = __TIME__;
 
-const char *version()
+const char *carramba_libs_version()
 {
 	return PACKAGE_STRING;
 }
 
-const char *info(int format)
+const char *carramba_libs_info(int format)
 {
 	char *info1, *info2, *line;
 	char *info3, *info4, *url;
@@ -89,7 +88,7 @@ const char *info(int format)
 	return (const char*)output;
 }
 
-int test(const char *number)
+int carramba_libs_api_test(const char *number)
 {
 	int len = strlen(number);
 	
