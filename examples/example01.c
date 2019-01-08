@@ -57,7 +57,7 @@ int main(int argc, char **argv)
 		
 	}	
 //---------------------------------------------------------------
-	rest = test(input);
+	rest = carramba_libs_api_test(input);
 //---------------------------------------------------------------
 	if (rest == RETURN_CODE_VALID && len == 11)
 		printf("Numer: %s to prawidłowy numer PESEL\n", input);
