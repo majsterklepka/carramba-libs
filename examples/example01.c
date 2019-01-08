@@ -25,30 +25,39 @@
  *
  */
 
-#include <carramba-libs.h>
+#include <carramba-libs.h>//plik nagłówkowy biblioteki libcarramba
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <malloc.h>
 #include <locale.h>
 
+/*
+przykładowa implementacja biblioteki libcarramba i jej dwóch funkcji
+carramba_libs_info(int format) oraz carramba_libs_api_test(const char *input)
+więcej w pliku README.md w katalogu examples 
+repozytorium majsterklepka/carramba-libs na GitHub.com
+*/
+
+void show_answer(int rest, const char *input);
 
 int main(int argc, char **argv)
 {
-	char *input;
-	int rest = 0;
-	int k = 0;
+	char *input; //
+	int rest = 0;//nadawanie wartrości początkowej zmiennym
+	int k = 65;  //
 //---------------------------------------------------------------
-	setlocale(LC_ALL, "pl_PL.UTF-8");
+	setlocale(LC_ALL, "pl_PL.UTF-8");//definiowanie języka
 //---------------------------------------------------------------
+	/* wyświetlanie informacji o bibliotece */	
 	const char *about = carramba_libs_info(INFO_FORMAT_PLAINTEXT);
 	printf("%s\n", about);
 //---------------------------------------------------------------	
-	input = (char*)malloc(64*sizeof(char));
-	input = readline("Wprowadź swój numer (PESEL|NIP|REGON|IBAN)\n(klawisz ENTER kończy wprowadzanie)\n(max. 64 znaków w lini): ");
-	printf("\n");
+	input = (char*)malloc(k*sizeof(char));//alokowanie pamięci dla zmiennej
+	input = readline("Wprowadź swój numer (PESEL|NIP|REGON|IBAN)\n(klawisz ENTER kończy wprowadzanie)\n(max. 64 znaków w lini): ");//czytanie ze stdin danych wejściowych
+	printf("\n");//drukowanie znaku nowego wiersza
 //---------------------------------------------------------------
-	int len = strlen(input);
-	if (len == 0 )
+	int len = strlen(input);//sprawdzanie długości ciągu wejściowego
+	if (len == 0 )// test logiczny, jesli PRAWDA to kończy działanie programu
 	{
 		printf("Błąd wprowadzania...\nKończę działanie!\n");
 		if(input)
@@ -57,8 +66,36 @@ int main(int argc, char **argv)
 		
 	}	
 //---------------------------------------------------------------
-	rest = carramba_libs_api_test(input);
+	/*funkcja testowa biblioteki libcarramba
+	  sprawdza czy ciąg wejściowy input
+	  jest poprawnym numerem NIP, REGON, IBAN bądź REGON
+	  wartość zwracana jest równa RETURN_CODE_VALID,
+	  zgodnie z definicją w pliku carramba-libs.h,	 
+	  jeśli jest to poprawny numer,
+	  jeśli nie, to zwracana jest wartość RETURN_CODE_INVALID
+	 */	 		
+	rest = carramba_libs_api_test(input);	
 //---------------------------------------------------------------
+	show_answer(rest, input);//funkcja wyświetlająca odpowiedź na problem
+//---------------------------------------------------------------	
+	//zwalnianie pamięci gdy zajęta	
+	if (input)
+		free(input);		
+//---------------------------------------------------------------
+	exit(EXIT_SUCCESS);
+}
+
+
+/*
+  funkcja wyświetlając w sposób przyjazny dla operatora
+  wartość zwracaną przez funkcję carramba_libs_api_test(const char *input)
+  z określeniem jaki to jest numer, gdy wartość zwracana
+  jest równa RETURN_CODE_VALID
+*/
+void show_answer(int rest, const char *input)
+{
+	int len = strlen(input);
+
 	if (rest == RETURN_CODE_VALID && len == 11)
 		printf("Numer: %s to prawidłowy numer PESEL\n", input);
 	else if ( rest == RETURN_CODE_VALID && (len == 10 || len == 12))
@@ -69,9 +106,4 @@ int main(int argc, char **argv)
 		printf("Prawidłowy numer IBAN!\n");
 	else
 		printf("Wprowadziłeś nieprawidłowy numer!\nKończę działanie!\n");
-//---------------------------------------------------------------	
-	if (input)
-		free(input);		
-//---------------------------------------------------------------
-	exit(EXIT_SUCCESS);
 }		
