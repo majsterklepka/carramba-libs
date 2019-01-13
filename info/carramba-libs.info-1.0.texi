@@ -1,12 +1,14 @@
 \input texinfo
-@settitle Carramba Libs API Manual
+@c %**start of header
+@settitle Carramba Libs API Reference 
+@setfilename carramba-libs-1.0.info
 @afourpaper
 @documentlanguage en_US
 @documentencoding UTF-8
-
+@c %**end of header
 
 @copying
-This is short example of complete Texinfo file, version 1.0
+This is Texinfo file of Carramba Libs API Reference, version 1.0
 @sp 1
 Copyright @copyright{}  2019  Pawel Sobotka.
 
@@ -34,11 +36,10 @@ along with Carramba Libs.  If not, see <@uref{http://www.gnu.org/licenses/}>.
 @end copying
 
 @titlepage
-@title Carramba Libs API 0.1
+@title Carramba Libs API Reference
 @subtitle version 1.0
 @author Pawel Sobotka
 
-@c The following two commands start the copyright page.
 @page
 @vskip 0pt plus 1filll
 @insertcopying
@@ -49,23 +50,25 @@ along with Carramba Libs.  If not, see <@uref{http://www.gnu.org/licenses/}>.
 
 @ifnottex
 @node Top
-@top Carramba Libs API
+@top Carramba Libs API Reference
 
 What is Carramba Libs? It is a library written for validate personal number like: PESEL, IBAN, NIP, REGON. These numbers are polish personal numbers and are use in Polish goverment administrations. For what was library such as Carramba Libs written? In many country, polish citizens travels, working and enjoys own free time. In business contacts knowledge whois my partner is very important and I will be told, nothing is much importants like these knowledge. Personal numbers like NIP and REGON identify the partner in business directly. When you travel outside our contry, PESEL number do these same. And is very important for users - > this library uses Open Source licensing models and you can look inside and test if it is useful and secure for you.
  
-@end ifnottex
-
 @menu
 * A piece of theory::   introduction to theory of validation personal numbers.
 * Index::               Complete index.
 * Copying::             Your rights and freedoms.
 @end menu
 
+@end ifnottex
+
 @node A piece of theory, Index, Top
 @chapter A piece of theory.
 @cindex A piece of theory.
 
 While checking the correctness of numbers, there is a simple rule: the whole number consists of numbers, each of these digits is multiplied by the balance and the last one, we add products and calculate the sum mod 10 (11), the final digit in the number is a checksum that must match the calculated.
+
+@ifnottex
 
 @menu
 * PESEL number::
@@ -74,7 +77,9 @@ While checking the correctness of numbers, there is a simple rule: the whole num
 * IBAN number::
 @end menu
 
-@node PESEL number, NIP number, A piece of theory, A piece of theory
+@end ifnottex
+
+@node PESEL number, NIP number, A piece of theory
 @section PESEL number
 
 The PESEL number consists of 10 digits, the last one(11) is a checksum. I will not describe the components of a PESEL number, all can be found on the Internet. Briefly, validation is done by:
@@ -136,29 +141,25 @@ if checksum == 10; then checksum = 0;
 
 The calculation is made as for the other numbers.
 
-@node IBAN number, Index, A piece of theory, A piece of theory
+@node IBAN number, Index, A piece of theory
 @section IBAN number
 
-@node Index, Copying, A piece of theory, Top 
+@node Index, Copying, Top 
 @unnumbered Index
 
 @cindex Index
 @printindex cp
 
 @node Copying, Top
-
 @appendix GNU Free Documentation License
 
 @pindex FDL-1.3
 @cindex GNU @command{FDL-1.3}
-
 @include fdl-1.3.texi
 
 @appendix GNU General Public License
-
 @pindex GPL-3.0
 @cindex GNU @command{GPL-3.0}
-
 @include gpl-3.0.texi
 
 @bye
