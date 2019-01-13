@@ -1,7 +1,7 @@
 \input texinfo
 @c %**start of header
 @settitle Carramba Libs API Reference 
-@setfilename carramba-libs-1.0.info
+@setfilename carramba-libs-1.info
 @afourpaper
 @documentlanguage en_US
 @documentencoding UTF-8
@@ -56,6 +56,8 @@ What is Carramba Libs? It is a library written for validate personal number like
  
 @menu
 * A piece of theory::   introduction to theory of validation personal numbers.
+* API function::        api function desciption
+* Header file::	        caramba-libs.h header file
 * Index::               Complete index.
 * Copying::             Your rights and freedoms.
 @end menu
@@ -141,8 +143,72 @@ if checksum == 10; then checksum = 0;
 
 The calculation is made as for the other numbers.
 
-@node IBAN number, Index, A piece of theory
+@node IBAN number, API function, A piece of theory
 @section IBAN number
+
+@node API function, Header file, A piece of theory, Top
+@chapter API function
+@cindex API function, api, function
+
+In this chapter I describe function provided by the library.
+
+@example
+int iban_validation_test(const char *iban)
+int regon_validation_test(const char *regon)
+int pesel_validation_test(const char *pesel)
+int nip_validation_test(const char *nip)
+const char *carramba_libs_version()
+const char *carramba_libs_info(int format)
+int carramba_libs_api_test(const char *number)
+@end example
+
+These function are provided by Carramba Libs Package, below I will provide a more detailed description of each function. 
+
+@section IBAN validation function
+@cindex iban, function, validation
+@example
+int iban_validation_test(const char* iban)
+@end example
+
+@section REGON validation function
+@cindex regon, function, validation
+@example
+int regon_validation_test(const char* regon)
+@end example
+
+@section PESEL validation function
+@cindex pesel, function, validation
+@example
+int pesel_validation_test(const char* pesel)
+@end example
+
+@section NIP validation function
+@cindex nip, function, validation
+@example
+int nip_validation_test(const char* nip)
+@end example
+
+@section Carramba Libs version print
+@cindex version, function, output, print
+@example
+const char* carramba_libs_version()
+@end example
+
+@section Carramba Libs info print
+@cindex info, function, output, print
+@example
+const char* carramba_libs_info(int format);
+@end example
+
+@section Carramba Libs test function
+@cindex test, function, implementation
+@example
+int carramba_libs_api_test(const char* number)
+@end example
+
+@node Header file, Index, API function, Top
+@chapter Header file
+@cindex carramba-libs.h, header file
 
 @node Index, Copying, Top 
 @unnumbered Index
