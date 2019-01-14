@@ -15,12 +15,7 @@ pkgconfigdir = @pkgconfigdir@
 docdir=${datadir}/doc/${PACKAGE}
 ACLOCAL_AMFLAGS = -I m4
 
-SUBDIRS = info
+EXTRA_DIST = carramba-libs-1.texi fdl-1.3.texi gpl-3.0.texi version.texi
 
-lib_LTLIBRARIES = libcarramba.la
-libcarramba_la_SOURCES = carramba-libs.h main.c src/nip.c src/pesel.c src/regon.c src/iban.c
-libcarramba_la_LDFLAGS = $(GMP_LIBS) -version-info $(PACKAGE_VERSION_MAJOR):$(PACKAGE_VERSION_MICRO):$(PACKAGE_VERSION_MINOR)
-include_HEADERS = carramba-libs.h
-pkgconfig_DATA = carramba-$(API_VERSION).pc
-
-CLEANFILES = carramba-$(API_VERSION).pc
+info_TEXINFOS = carramba-libs-1.texi
+carramba_libs_1_TEXINFOS = fdl-1.3.texi gpl-3.0.texi version.texi

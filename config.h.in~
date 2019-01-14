@@ -1,6 +1,6 @@
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
-/* builder */
+/* maintainer/builder */
 #undef BUILDER
 
 /* build cpu */
