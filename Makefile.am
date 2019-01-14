@@ -15,7 +15,7 @@ pkgconfigdir = @pkgconfigdir@
 docdir=${datadir}/doc/${PACKAGE}
 ACLOCAL_AMFLAGS = -I m4
 
-SUBDIRS = info
+SUBDIRS = doc 
 
 lib_LTLIBRARIES = libcarramba.la
 libcarramba_la_SOURCES = carramba-libs.h main.c src/nip.c src/pesel.c src/regon.c src/iban.c

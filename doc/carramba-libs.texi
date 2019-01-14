@@ -1,16 +1,16 @@
 \input texinfo
 @c %**start of header
+@set PROGNAME Carramba Libs Package
+@include version.texi
 @settitle Carramba Libs API Reference 
-@setfilename carramba-libs-1.info
+@setfilename carramba-libs.info
 @afourpaper
 @documentlanguage en_US
 @documentencoding UTF-8
 @c %**end of header
 
-@include version.texi
-
 @copying
-This is Texinfo file of Carramba Libs API Reference, version 1.0
+This is Texinfo file of @value{PROGNAME} version @value{VERSION}, date @value{UPDATED-MONTH}.
 @sp 1
 Copyright @copyright{}  2019  Pawel Sobotka.
 
@@ -21,14 +21,14 @@ with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
 A copy of the license is included in the section entitled "GNU
 Free Documentation License".
 @sp 1
-Examples and sources code included in this document are part of Carramba Libs.
+Examples and sources code included in this document are part of @value{PROGNAME}.
 
-Carramba Libs is free software: you can redistribute it and/or modify
+@value{PROGNAME} is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation; either version 3 of the License, or
 (at your option) any later version.
 
-Carramba Libs is distributed in the hope that it will be useful,
+PROGNAME is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
@@ -37,9 +37,15 @@ along with Carramba Libs.  If not, see <@uref{http://www.gnu.org/licenses/}>.
 
 @end copying
 
+@dircategory GNU libraries
+@direntry
+* carramba-libs: (carramba-libs).			library to validate personal number  PESEL, NIP, REGON, IBAN                    
+@end direntry
+
 @titlepage
 @title Carramba Libs API Reference
-@subtitle version 1.0
+@subtitle version @value{VERSION}
+@subtitle updated @value{UPDATED} 
 @author Pawel Sobotka
 
 @page
@@ -53,6 +59,7 @@ along with Carramba Libs.  If not, see <@uref{http://www.gnu.org/licenses/}>.
 @ifnottex
 @node Top
 @top Carramba Libs API Reference
+@cindex Top
 
 What is Carramba Libs? It is a library written for validate personal number like: PESEL, IBAN, NIP, REGON. These numbers are polish personal numbers and are use in Polish goverment administrations. For what was library such as Carramba Libs written? In many country, polish citizens travels, working and enjoys own free time. In business contacts knowledge whois my partner is very important and I will be told, nothing is much importants like these knowledge. Personal numbers like NIP and REGON identify the partner in business directly. When you travel outside our contry, PESEL number do these same. And is very important for users - > this library uses Open Source licensing models and you can look inside and test if it is useful and secure for you.
  
@@ -147,6 +154,41 @@ The calculation is made as for the other numbers.
 
 @node IBAN number, API function, A piece of theory
 @section IBAN number
+@cindex IBAN
+
+To verify the correctness of the IBAN number, its check sum should be calculated. In Poland, the IBAN number consists of 28 characters, the first two being the country code (PL). The next two characters are the checksum (items 3 and 4) and the remaining ones are the correct bank account number. The account number is up to 30 alphanumeric characters, it is the bank's basic account number (BBAN), some of which must identify the bank. In Poland, BBAN consists of 24 digits, of which 8 digits form the bank's settlement number and the remaining 16 digits specify the customer's account number.
+
+@example
+@strong{PLkk AAAAAAAA BBBBBBBBBBBBBBBB} => Polish IBAN number
+
+@strong{PL} => country code according to the standard
+@uref{http://pl.wikipedia.org/wiki/ISO_3166-1, ISO-3166-1}
+
+@strong{kk} => checksum
+
+@strong{AAAAAAAA} => number identifying the bank
+
+@strong{BBBBBBBBBBBBBBBB} => client account number
+@end example
+
+The IBAN number is written without spaces.
+
+In order to calculate the checksum, one should follow the algorithm:
+
+@itemize @minus
+
+@item
+we always consider the full IBAN number including the country code
+
+@item
+we are moving the first four characters in the end
+we change letters into strings of numbers such that A is @code{10}, B is @code{11} up to Z
+
+@item
+after changing letters into a string of digits, we obtained a string of numbers only, we calculate the sum of modulo 97 and if it is equal to 1 then the checksum is correct
+@end itemize
+
+A similar algorithm applies in other countries using the IBAN system.
 
 @node API function, Header file, A piece of theory, Top
 @chapter API function
@@ -164,7 +206,7 @@ const char *carramba_libs_info(int format)
 int carramba_libs_api_test(const char *number)
 @end example
 
-These function are provided by Carramba Libs Package, below I will provide a more detailed description of each function. 
+These function are provided by @value{PROGNAME}, below I will provide a more detailed description of each function. 
 
 @section IBAN validation function
 @cindex iban, function, validation
@@ -222,12 +264,12 @@ int carramba_libs_api_test(const char* number)
 @appendix GNU Free Documentation License
 
 @pindex FDL-1.3
-@cindex GNU @command{FDL-1.3}
+@cindex GNU GPL @command{FDL-1.3}
 @include fdl-1.3.texi
 
 @appendix GNU General Public License
 @pindex GPL-3.0
-@cindex GNU @command{GPL-3.0}
+@cindex GNU GPL @command{GPL-3.0}
 @include gpl-3.0.texi
 
 @bye

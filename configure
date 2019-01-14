@@ -2232,7 +2232,7 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 ac_aux_dir=
-for ac_dir in info "$srcdir"/info; do
+for ac_dir in doc "$srcdir"/doc; do
   if test -f "$ac_dir/install-sh"; then
     ac_aux_dir=$ac_dir
     ac_install_sh="$ac_aux_dir/install-sh -c"
@@ -2248,7 +2248,7 @@ for ac_dir in info "$srcdir"/info; do
   fi
 done
 if test -z "$ac_aux_dir"; then
-  as_fn_error $? "cannot find install-sh, install.sh, or shtool in info \"$srcdir\"/info" "$LINENO" 5
+  as_fn_error $? "cannot find install-sh, install.sh, or shtool in doc \"$srcdir\"/doc" "$LINENO" 5
 fi
 
 # These three variables are undocumented and unsupported,
@@ -13161,7 +13161,7 @@ fi
 
 ac_config_files="$ac_config_files Makefile"
 
-ac_config_files="$ac_config_files info/Makefile"
+ac_config_files="$ac_config_files doc/Makefile"
 
 ac_config_files="$ac_config_files carramba-$API_VERSION.pc:carramba.pc.in"
 
@@ -14182,7 +14182,7 @@ do
     "config.h") CONFIG_HEADERS="$CONFIG_HEADERS config.h" ;;
     "libtool") CONFIG_COMMANDS="$CONFIG_COMMANDS libtool" ;;
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
-    "info/Makefile") CONFIG_FILES="$CONFIG_FILES info/Makefile" ;;
+    "doc/Makefile") CONFIG_FILES="$CONFIG_FILES doc/Makefile" ;;
     "carramba-$API_VERSION.pc") CONFIG_FILES="$CONFIG_FILES carramba-$API_VERSION.pc:carramba.pc.in" ;;
 
   *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;

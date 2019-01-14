@@ -11,7 +11,7 @@ m4_define([api_version],[0.1])
 
 AC_PREREQ([2.69])
 AC_INIT([Carramba Libs], [package_version_major.package_version_minor.package_version_micro], [starywandal@onet.pl])
-AC_CONFIG_AUX_DIR([info])
+AC_CONFIG_AUX_DIR([doc])
 AM_INIT_AUTOMAKE([-Wall -Werror foreign subdir-objects])
 AM_PROG_AR
 AC_CONFIG_SRCDIR([main.c])
@@ -56,7 +56,7 @@ AC_CHECK_HEADERS([locale.h stdlib.h string.h])
 AC_FUNC_MALLOC
 
 AC_CONFIG_FILES([Makefile])
-AC_CONFIG_FILES([info/Makefile])
+AC_CONFIG_FILES([doc/Makefile])
 AC_CONFIG_FILES([carramba-$API_VERSION.pc:carramba.pc.in],[API_VERSION='$API_VERSION'])
 
 AC_OUTPUT

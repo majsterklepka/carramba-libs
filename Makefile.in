@@ -162,7 +162,7 @@ am__v_at_ = $(am__v_at_@AM_DEFAULT_V@)
 am__v_at_0 = @
 am__v_at_1 = 
 DEFAULT_INCLUDES = -I.@am__isrc@
-depcomp = $(SHELL) $(top_srcdir)/info/depcomp
+depcomp = $(SHELL) $(top_srcdir)/doc/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/main.Plo src/$(DEPDIR)/iban.Plo \
 	src/$(DEPDIR)/nip.Plo src/$(DEPDIR)/pesel.Plo \
@@ -234,11 +234,11 @@ CTAGS = ctags
 CSCOPE = cscope
 DIST_SUBDIRS = $(SUBDIRS)
 am__DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/carramba.pc.in \
-	$(srcdir)/config.h.in $(top_srcdir)/info/ar-lib \
-	$(top_srcdir)/info/compile $(top_srcdir)/info/config.guess \
-	$(top_srcdir)/info/config.sub $(top_srcdir)/info/depcomp \
-	$(top_srcdir)/info/install-sh $(top_srcdir)/info/ltmain.sh \
-	$(top_srcdir)/info/missing ar-lib compile config.guess \
+	$(srcdir)/config.h.in $(top_srcdir)/doc/ar-lib \
+	$(top_srcdir)/doc/compile $(top_srcdir)/doc/config.guess \
+	$(top_srcdir)/doc/config.sub $(top_srcdir)/doc/depcomp \
+	$(top_srcdir)/doc/install-sh $(top_srcdir)/doc/ltmain.sh \
+	$(top_srcdir)/doc/missing ar-lib compile config.guess \
 	config.sub depcomp install-sh ltmain.sh missing
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 distdir = $(PACKAGE)-$(VERSION)
@@ -408,7 +408,7 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 ACLOCAL_AMFLAGS = -I m4
-SUBDIRS = info
+SUBDIRS = doc 
 lib_LTLIBRARIES = libcarramba.la
 libcarramba_la_SOURCES = carramba-libs.h main.c src/nip.c src/pesel.c src/regon.c src/iban.c
 libcarramba_la_LDFLAGS = $(GMP_LIBS) -version-info $(PACKAGE_VERSION_MAJOR):$(PACKAGE_VERSION_MICRO):$(PACKAGE_VERSION_MINOR)

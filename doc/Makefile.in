@@ -87,7 +87,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-subdir = info
+subdir = doc
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/libtool.m4 \
 	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
@@ -143,14 +143,14 @@ AM_V_texidevnull = $(am__v_texidevnull_@AM_V@)
 am__v_texidevnull_ = $(am__v_texidevnull_@AM_DEFAULT_V@)
 am__v_texidevnull_0 = > /dev/null
 am__v_texidevnull_1 = 
-INFO_DEPS = $(srcdir)/carramba-libs-1.info
-TEXINFO_TEX = $(top_srcdir)/info/texinfo.tex
-am__TEXINFO_TEX_DIR = $(top_srcdir)/info
-DVIS = carramba-libs-1.dvi
-PDFS = carramba-libs-1.pdf
-PSS = carramba-libs-1.ps
-HTMLS = carramba-libs-1.html
-TEXINFOS = carramba-libs-1.texi
+INFO_DEPS = $(srcdir)/carramba-libs.info
+TEXINFO_TEX = $(top_srcdir)/doc/texinfo.tex
+am__TEXINFO_TEX_DIR = $(top_srcdir)/doc
+DVIS = carramba-libs.dvi
+PDFS = carramba-libs.pdf
+PSS = carramba-libs.ps
+HTMLS = carramba-libs.html
+TEXINFOS = carramba-libs.texi
 TEXI2DVI = texi2dvi
 TEXI2PDF = $(TEXI2DVI) --pdf --batch
 MAKEINFOHTML = $(MAKEINFO) --html
@@ -190,7 +190,7 @@ am__uninstall_files_from_dir = { \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
-am__DIST_COMMON = $(carramba_libs_1_TEXINFOS) $(srcdir)/Makefile.in \
+am__DIST_COMMON = $(carramba_libs_TEXINFOS) $(srcdir)/Makefile.in \
 	ar-lib compile config.guess config.sub depcomp install-sh \
 	ltmain.sh mdate-sh missing texinfo.tex
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -320,9 +320,9 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 ACLOCAL_AMFLAGS = -I m4
-EXTRA_DIST = carramba-libs-1.texi fdl-1.3.texi gpl-3.0.texi version.texi
-info_TEXINFOS = carramba-libs-1.texi
-carramba_libs_1_TEXINFOS = fdl-1.3.texi gpl-3.0.texi version.texi
+EXTRA_DIST = carramba-libs.texi fdl-1.3.texi gpl-3.0.texi 
+info_TEXINFOS = carramba-libs.texi
+carramba_libs_TEXINFOS = fdl-1.3.texi gpl-3.0.texi version.texi
 all: all-am
 
 .SUFFIXES:
@@ -336,9 +336,9 @@ $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign info/Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign doc/Makefile'; \
 	$(am__cd) $(top_srcdir) && \
-	  $(AUTOMAKE) --foreign info/Makefile
+	  $(AUTOMAKE) --foreign doc/Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \
 	  *config.status*) \
@@ -406,14 +406,14 @@ clean-libtool:
 	else \
 	  rm -rf $(@:.html=.htp); exit 1; \
 	fi
-$(srcdir)/carramba-libs-1.info: carramba-libs-1.texi $(srcdir)/version.texi $(carramba_libs_1_TEXINFOS)
-carramba-libs-1.dvi: carramba-libs-1.texi $(srcdir)/version.texi $(carramba_libs_1_TEXINFOS)
-carramba-libs-1.pdf: carramba-libs-1.texi $(srcdir)/version.texi $(carramba_libs_1_TEXINFOS)
-carramba-libs-1.html: carramba-libs-1.texi $(srcdir)/version.texi $(carramba_libs_1_TEXINFOS)
+$(srcdir)/carramba-libs.info: carramba-libs.texi $(srcdir)/version.texi $(carramba_libs_TEXINFOS)
+carramba-libs.dvi: carramba-libs.texi $(srcdir)/version.texi $(carramba_libs_TEXINFOS)
+carramba-libs.pdf: carramba-libs.texi $(srcdir)/version.texi $(carramba_libs_TEXINFOS)
+carramba-libs.html: carramba-libs.texi $(srcdir)/version.texi $(carramba_libs_TEXINFOS)
 $(srcdir)/version.texi:  $(srcdir)/stamp-vti
-$(srcdir)/stamp-vti: carramba-libs-1.texi $(top_srcdir)/configure
-	@(dir=.; test -f ./carramba-libs-1.texi || dir=$(srcdir); \
-	set `$(SHELL) $(top_srcdir)/info/mdate-sh $$dir/carramba-libs-1.texi`; \
+$(srcdir)/stamp-vti: carramba-libs.texi $(top_srcdir)/configure
+	@(dir=.; test -f ./carramba-libs.texi || dir=$(srcdir); \
+	set `$(SHELL) $(top_srcdir)/doc/mdate-sh $$dir/carramba-libs.texi`; \
 	echo "@set UPDATED $$1 $$2 $$3"; \
 	echo "@set UPDATED-MONTH $$2 $$3"; \
 	echo "@set EDITION $(VERSION)"; \
@@ -511,13 +511,13 @@ dist-info: $(INFO_DEPS)
 	done
 
 mostlyclean-aminfo:
-	-rm -rf carramba-libs-1.t2d carramba-libs-1.t2p
+	-rm -rf carramba-libs.t2d carramba-libs.t2p
 
 clean-aminfo:
-	-test -z "carramba-libs-1.dvi carramba-libs-1.pdf carramba-libs-1.ps \
-	  carramba-libs-1.html" \
-	|| rm -rf carramba-libs-1.dvi carramba-libs-1.pdf carramba-libs-1.ps \
-	  carramba-libs-1.html
+	-test -z "carramba-libs.dvi carramba-libs.pdf carramba-libs.ps \
+	  carramba-libs.html" \
+	|| rm -rf carramba-libs.dvi carramba-libs.pdf carramba-libs.ps \
+	  carramba-libs.html
 
 maintainer-clean-aminfo:
 	@list='$(INFO_DEPS)'; for i in $$list; do \
