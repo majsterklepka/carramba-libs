@@ -159,16 +159,16 @@ The calculation is made as for the other numbers.
 To verify the correctness of the IBAN number, its check sum should be calculated. In Poland, the IBAN number consists of 28 characters, the first two being the country code (PL). The next two characters are the checksum (items 3 and 4) and the remaining ones are the correct bank account number. The account number is up to 30 alphanumeric characters, it is the bank's basic account number (BBAN), some of which must identify the bank. In Poland, BBAN consists of 24 digits, of which 8 digits form the bank's settlement number and the remaining 16 digits specify the customer's account number.
 
 @example
-@strong{PLkk AAAAAAAA BBBBBBBBBBBBBBBB} => Polish IBAN number
+@b{PLkk AAAAAAAA BBBBBBBBBBBBBBBB} => Polish IBAN number
 
-@strong{PL} => country code according to the standard
+@b{PL} => country code according to the standard
 @uref{http://pl.wikipedia.org/wiki/ISO_3166-1, ISO-3166-1}
 
-@strong{kk} => checksum
+@b{kk} => checksum
 
-@strong{AAAAAAAA} => number identifying the bank
+@b{AAAAAAAA} => number identifying the bank
 
-@strong{BBBBBBBBBBBBBBBB} => client account number
+@b{BBBBBBBBBBBBBBBB} => client account number
 @end example
 
 The IBAN number is written without spaces.
@@ -209,13 +209,50 @@ int carramba_libs_api_test(const char *number)
 These function are provided by @value{PROGNAME}, below I will provide a more detailed description of each function. 
 
 @section IBAN validation function
-@cindex iban, function, validation
+@cindex iban
+@cindex function
+@cindex validation
 @example
 int iban_validation_test(const char* iban)
 @end example
 
+This function provides validate functionality by checking checksum of input string. Return value is depend of that, if input string is valid @code{RETURN_CODE_VALID} or not @code{RETURN_CODE_INVALID}. These two constants are definied in header file @code{carramba-libs.h}
+
+@xref{Header file, carramba-libs.h, carramba-libs.h, carramba-libs, Carramba Libs API Reference}.
+
+Usage:
+@example
+
+#include    <carramba-libs.h>
+#include    <malloc.h>
+...
+
+int test = 0;
+char *buffer = (char*)malloc(40*sizeof(char));
+
+printf("IBAN: ");
+
+scanf("%s", &buffer);
+
+test = iban_validation_test(buffer);
+
+if (test == RETURN_CODE_VALID)
+    printf("IBAN valid\n");
+else
+    printf("IBAN invalid\n");
+
+free(buffer);
+
+...
+
+@end example
+
+Like you see implementation is very simply.
+
 @section REGON validation function
-@cindex regon, function, validation
+@cindex regon
+@cindex function
+@cindex validation
 @example
 int regon_validation_test(const char* regon)
 @end example
@@ -252,7 +289,117 @@ int carramba_libs_api_test(const char* number)
 
 @node Header file, Index, API function, Top
 @chapter Header file
-@cindex carramba-libs.h, header file
+@cindex carramba-libs.h
+@cindex header file
+
+File @code{carramba-libs.h} is library header file. What is inside file?
+
+@example
+
+#ifndef CARRAMBA_LIBS_H_
+#define CARRAMBA_LIBS_H_
+
+#define INFO_FORMAT_PLAINTEXT       0
+#define INFO_FORMAT_MARKDOWN        10
+#define INFO_FORMAT_MARKUP          20
+
+#define RETURN_CODE_VALID           1
+#define RETURN_CODE_INVALID         -1
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+
+...
+
+#endif /* CARRAMBA_LIBS_H_ */
+
+@end example
+
+Show up are definitions some important constant, also are includes some header files standard C library. 
+
+The most important definitions of constants are:
+
+@example
+
+#define   RETURN_CODE_VALID        1
+#define   RETURN_CODE_INVALID      -1
+
+@end example
+
+Two all are return value of library function, next constants, are
+
+@example
+
+#define INFO_FORMAT_PLAINTEXT      0
+#define INFO_FORMAT_MARKDOWN       10
+#define INFO_FORMAT_MARKUP         20
+
+@end example 
+
+Three all that are input value to one function @code{carramba_libs_info()}, they tell how will be look output from that function. Next we have standard in header file, function definitions:
+
+@example
+
+#ifndef CARRAMBA_LIBS_H_
+#define CARRAMBA_LIBS_H_
+
+...
+
+int iban_validation_test(const char *iban);
+
+int regon_validation_test(const char *regon);
+
+int pesel_validation_test(const char *pesel);
+
+int nip_validation_test(const char *nip);
+
+const char *carramba_libs_version();
+
+const char *carramba_libs_info(int format);
+
+int carramba_libs_api_test(const char *number); 
+
+#endif /* CARRAMBA_LIBS_H_ */
+
+@end example 
+
+And include for manage purpose:
+
+@example
+
+...
+
+#ifndef NIP_C_
+#define NIP_C_		1
+#endif
+
+#ifndef REGON_C_
+#define REGON_C_	1
+#endif
+
+#ifndef PESEL_C_
+#define PESEL_C_	1
+#endif
+
+#ifndef IBAN_C_
+#define IBAN_C_		1
+#endif
+
+...
+
+@end example 
+
+Aplication to work with this library need include header file: 
+
+@example 
+#include   <carramba-libs.h>
+
+... more
+@end example
+
+at the top of source file.
 
 @node Index, Copying, Top 
 @unnumbered Index

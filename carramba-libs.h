@@ -19,7 +19,7 @@
 #define INFO_FORMAT_MARKDOWN	10
 #define INFO_FORMAT_MARKUP	20
 
-#define RETURN_CODE_VALID 	0
+#define RETURN_CODE_VALID 	1
 #define	RETURN_CODE_INVALID	-1
 
 #include <stdio.h>
