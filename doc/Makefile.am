@@ -20,4 +20,4 @@ EXTRA_DIST = carramba-libs.texi fdl-1.3.texi gpl-3.0.texi
 info_TEXINFOS = carramba-libs.texi
 carramba_libs_TEXINFOS = fdl-1.3.texi gpl-3.0.texi
 
-CLEANFILES = carramba-libs.info
+

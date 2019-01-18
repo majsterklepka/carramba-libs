@@ -28,7 +28,7 @@ it under the terms of the GNU General Public License as published by
 the Free Software Foundation; either version 3 of the License, or
 (at your option) any later version.
 
-PROGNAME is distributed in the hope that it will be useful,
+@value{PROGNAME} is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
@@ -44,8 +44,7 @@ along with @value{PROGNAME}.  If not, see <@uref{http://www.gnu.org/licenses/}>.
 
 @titlepage
 @title Carramba Libs API Reference
-@subtitle version @value{VERSION}
-@subtitle updated @value{UPDATED} 
+@subtitle version @value{VERSION} updated @value{UPDATED} 
 @author Pawel Sobotka
 
 @page
@@ -61,13 +60,14 @@ along with @value{PROGNAME}.  If not, see <@uref{http://www.gnu.org/licenses/}>.
 @top Carramba Libs API Reference
 @cindex Top
 
-What is Carramba Libs? It is a library written for validate personal number like: PESEL, IBAN, NIP, REGON. These numbers are polish personal numbers and are use in Polish goverment administrations. For what was library such as Carramba Libs written? In many country, polish citizens travels, working and enjoys own free time. In business contacts knowledge whois my partner is very important and I will be told, nothing is much importants like these knowledge. Personal numbers like NIP and REGON identify the partner in business directly. When you travel outside our contry, PESEL number do these same. And is very important for users - > this library uses Open Source licensing models and you can look inside and test if it is useful and secure for you.
+What is Carramba Libs? It is a library written for validate personal number like: PESEL, IBAN, NIP, REGON. These numbers are polish personal numbers and are use in Polish goverment administrations. For what was library such as Carramba Libs written? In many country, polish citizens travels, working and enjoys own free time. In business contacts knowledge whois my partner is very important and I will be told, nothing is much importants like these knowledge. Personal numbers like NIP and REGON identify the partner in business directly. When you travel outside our contry, PESEL number do these same. And is very important for users => this library uses Open Source licensing models and you can look inside and test if it is useful and secure for you.
  
 @menu
 * A piece of theory::   introduction to theory of validation personal numbers.
 * API function::        API function desciption
 * Header file::	        caramba-libs.h header file
-* Index::               Complete index.
+* Index::               Complete index
+* Function Index::      Complete library function index
 * Copying::             Your rights and freedoms.
 @end menu
 
@@ -211,7 +211,7 @@ int carramba_libs_api_test(const char *number)
 These function are provided by @value{PROGNAME}, below I will provide a more detailed description of each function. 
 
 @section IBAN validation function
-@cindex iban_validation_test()
+@findex iban_validation_test()
 
 @example
 int iban_validation_test(const char* iban)
@@ -249,7 +249,7 @@ free(buffer);
 Like you see implementation is very simply.
 
 @section REGON validation function
-@cindex regon_validation_test()
+@findex regon_validation_test()
 
 @example
 int regon_validation_test(const char* regon)
@@ -287,39 +287,86 @@ exit(EXIT_SUCCESS);
 What this example does? The first you must declare some variable and of course tested number REGON. Next in condition @code{if ... esle} you tested length of string and if are valid, use library function to test correctness of input number. Correct length of REGON are: 7, 9 or 14 digits. Return value is tested by conditional @code{if test == RETURN_CODE_VALID} and if test is TRUE, is printed response at stdin output. Constants @code{RETURN_VALUE_VALID} is defined in header file @xref{Header file, carramba-libs.h, carramba-libs.h, carramba-libs, Carramba Libs API Reference}, like also @code{RETURN_CODE_INVALID}. Returned value are equal to 1 and -1. Return value is always integer.
 
 @section PESEL validation function
-@cindex pesel_validation_test()
+@findex pesel_validation_test()
 
 @example
 int pesel_validation_test(const char* pesel)
 @end example
 
+Personal number like PESEL are used for indentyfication individuals in the scope of their rights and privileges. PESEL consist of 11 digits and it also lets you check your gender(not implemented yet). Usage:
+
+@example
+
+#include <carramba-libs.h>
+
+...
+
+int test = 0;
+char *pesel = "";//put here your PESEL
+
+int len = strlen(pesel);
+
+if (len == 11)
+    test = pesel_validation_test(pesel);
+
+if (test == RETURN_CODE_VALID)
+    printf("PESEL: %s -> is valid!\n", pesel);
+else
+    printf("Input number: %s isn't PESEL or is invalid!\n", pesel);
+
+exit(EXIT_SUCCESS);
+
+@end example
+
+Like you see above, it is easy to use this function.
+
 @section NIP validation function
-@cindex nip_validation_test()
+@findex nip_validation_test()
 
 @example
 int nip_validation_test(const char* nip)
 @end example
 
+NIP number consist of 10 digits, it represents business entity and payer of contributions and taxes. Usage is like shown above
+
 @section Carramba Libs version print
-@cindex carramba_libs_version()
+@findex carramba_libs_version()
 
 @example
 const char* carramba_libs_version()
 @end example
 
+This function return veriosn package version number, which is the same as library version number.
+
 @section Carramba Libs info print
-@cindex carramba_libs_info()
+@findex carramba_libs_info()
 
 @example
 const char* carramba_libs_info(int format);
 @end example
 
+This function returns: short description about your right and freedom, about person who build package and about package build date. Variable @var{format} can take one of the third values:
+
+@example
+
+INFO_FORMAT_PLAINTEXT
+       
+INFO_FORMAT_MARKDOWN
+        
+INFO_FORMAT_MARKUP          
+
+@end example 
+
+which allows you to prepare the return value in an adjacent format.
+
 @section Carramba Libs test function
-@cindex carramba_libs_api_test()
+@findex carramba_libs_api_test()
 
 @example
 int carramba_libs_api_test(const char* number)
 @end example
+
+This function is simple implementation of all library test function - one function, all test!
 
 @node Header file, Index, API function, Top
 @chapter Header file
@@ -436,22 +483,26 @@ more ...
 
 at the top of source file.
 
-@node Index, Copying, Top 
+@node Index, Function Index, Top 
 @unnumbered Index
-
 @cindex Index
+
 @printindex cp
+
+@node Function Index, Copying, Top
+@unnumbered Function Index
+@cindex Function Index
+
+@printindex fn
 
 @node Copying, Top
 @appendix GNU Free Documentation License
 
-@pindex FDL-1.3
-@cindex GNU FDL @command{FDL-1.3}
+@cindex GNU FDL 
 @include fdl-1.3.texi
 
 @appendix GNU General Public License
-@pindex GPL-3.0
-@cindex GNU GPL @command{GPL-3.0}
+@cindex GNU GPL 
 @include gpl-3.0.texi
 
 @bye
