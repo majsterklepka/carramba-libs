@@ -1,8 +1,8 @@
 This is carramba-libs.info, produced by makeinfo version 6.5 from
 carramba-libs.texi.
 
-This is Texinfo file of Carramba Libs Package version 0.0.1, date
-January 2019.
+This manual is for Carramba Libs Package (version 0.0.1, 21 January
+2019)
 
    Copyright © 2019 Pawel Sobotka.
 
@@ -30,7 +30,7 @@ see <<http://www.gnu.org/licenses/>>.
 
 INFO-DIR-SECTION GNU libraries
 START-INFO-DIR-ENTRY
-* carramba-libs: (carramba-libs).			library to validate personal number  PESEL, NIP, REGON, IBAN
+* carramba-libs: (carramba-libs)			library to validate personal number  PESEL, NIP, REGON, IBAN
 END-INFO-DIR-ENTRY
 
 
@@ -56,6 +56,7 @@ look inside and test if it is useful and secure for you.
 * A piece of theory::   introduction to theory of validation personal numbers.
 * API function::        API function desciption
 * Header file::	        caramba-libs.h header file
+* pkg-config support::  pkg-config support
 * Index::               Complete index
 * Function Index::      Complete library function index
 * Copying::             Your rights and freedoms.
@@ -194,7 +195,7 @@ specify the customer’s account number.
    A similar algorithm applies in other countries using the IBAN system.
 
 
-File: carramba-libs.info,  Node: API function,  Next: Header file,  Prev: A piece of theory,  Up: Top
+File: carramba-libs.info,  Node: API function,  Next: pkg-config support,  Prev: A piece of theory,  Up: Top
 
 2 API function
 **************
@@ -371,9 +372,39 @@ Variable FORMAT can take one of the third values:
 one function, all test!
 
 
+File: carramba-libs.info,  Node: pkg-config support,  Next: Header file,  Prev: API function,  Up: Top
+
+3 pkg-config support
+********************
+
+Library provides ‘pkg-config’ support by generate ‘carramba-0.1.pc’
+file.  What’s inside file?
+
+   ***********
+
+     prefix=/usr/local
+     exec_prefix=${prefix}
+     libdir=${exec_prefix}/lib
+     includedir=${prefix}/include
+
+
+     Name: Carramba Libs
+     Description: Carramba Libs - library for validate IBAN, NIP, REGON, PESEL
+     Version: 0.0.1
+     Libs: -L${libdir} -Wl,-rpath -Wl,${exec_prefix}/lib -lcarramba  -lgmp
+     Cflags: -I${includedir}
+
+   ***********
+
+   To compile, just use code:
+
+   ‘gcc ... `pkg-config --libs carramba-0.1 --cflags carramba-0.1
+--with-path=/path/to/pkgconfig`’
+
+
 File: carramba-libs.info,  Node: Header file,  Next: Index,  Prev: API function,  Up: Top
 
-3 Header file
+4 Header file
 *************
 
 File ‘carramba-libs.h’ is library header file.  What is inside?
@@ -488,7 +519,9 @@ Index
 * Menu:
 
 * A piece of theory.:                    A piece of theory.     (line 6)
-* API function, API, function:           API function.          (line 6)
+* API function:                          API function.          (line 6)
+* API library function:                  API function.          (line 6)
+* carramba-0.1.pc:                       pkg-config support.    (line 6)
 * carramba-libs.h:                       Header file.           (line 6)
 * Function Index:                        Function Index.        (line 4)
 * GNU FDL:                               Copying.               (line 4)
@@ -1714,17 +1747,18 @@ please read <https://www.gnu.org/licenses/why-not-lgpl.html>.
 
 
 Tag Table:
-Node: Top1485
-Node: A piece of theory2716
-Node: PESEL number3215
-Node: NIP number3832
-Node: REGON number4725
-Node: IBAN number5346
-Node: API function6979
-Node: Header file11948
-Node: Index14119
-Node: Function Index15034
-Node: Copying15677
+Node: Top1478
+Node: A piece of theory2752
+Node: PESEL number3251
+Node: NIP number3868
+Node: REGON number4761
+Node: IBAN number5382
+Node: API function7015
+Node: pkg-config support11991
+Node: Header file12759
+Node: Index14930
+Node: Function Index15991
+Node: Copying16634
 
 End Tag Table
 

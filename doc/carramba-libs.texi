@@ -10,7 +10,7 @@
 @c %**end of header
 
 @copying
-This is Texinfo file of @value{PROGNAME} version @value{VERSION}, date @value{UPDATED-MONTH}.
+This manual is for @value{PROGNAME} (version @value{VERSION}, @value{UPDATED})
 @sp 1
 Copyright @copyright{}  2019  Pawel Sobotka.
 
@@ -39,13 +39,14 @@ along with @value{PROGNAME}.  If not, see <@uref{http://www.gnu.org/licenses/}>.
 
 @dircategory GNU libraries
 @direntry
-* carramba-libs: (carramba-libs).			library to validate personal number  PESEL, NIP, REGON, IBAN                    
+* carramba-libs: (carramba-libs)			library to validate personal number  PESEL, NIP, REGON, IBAN                    
 @end direntry
 
 @titlepage
 @title Carramba Libs API Reference
-@subtitle version @value{VERSION} updated @value{UPDATED} 
-@author Pawel Sobotka
+@subtitle for for version @value{VERSION}, @value{UPDATED}
+ 
+@author Pawel Sobotka (@email{starywandal@@onet.pl})
 
 @page
 @vskip 0pt plus 1filll
@@ -66,6 +67,7 @@ What is Carramba Libs? It is a library written for validate personal number like
 * A piece of theory::   introduction to theory of validation personal numbers.
 * API function::        API function desciption
 * Header file::	        caramba-libs.h header file
+* pkg-config support::  pkg-config support
 * Index::               Complete index
 * Function Index::      Complete library function index
 * Copying::             Your rights and freedoms.
@@ -192,9 +194,10 @@ after changing letters into a string of digits, we obtained a string of numbers 
 
 A similar algorithm applies in other countries using the IBAN system.
 
-@node API function, Header file, A piece of theory, Top
+@node API function, pkg-config support, A piece of theory, Top
 @chapter API function
-@cindex API function, API, function
+@cindex API function
+@cindex API library function
 
 In this chapter I describe function provided by the library.
 
@@ -217,7 +220,15 @@ These function are provided by @value{PROGNAME}, below I will provide a more det
 int iban_validation_test(const char* iban)
 @end example
 
-This function provides validate functionality by checking checksum of input string. Return value is depend of that, if input string is valid @code{RETURN_CODE_VALID} or not @code{RETURN_CODE_INVALID}. These two constants are defined in header file @xref{Header file, carramba-libs.h, carramba-libs.h, carramba-libs, Carramba Libs API Reference}.
+This function provides validate functionality by checking checksum of input string. Return value is depend of that, if input string is valid @code{RETURN_CODE_VALID} or not @code{RETURN_CODE_INVALID}. These two constants are defined in header file
+@ifnottex
+@xref{Header file, carramba-libs.h, carramba-libs.h, carramba-libs, Carramba Libs API Reference}.
+@iftex
+@xref{Header file, carramba-libs.h, carramba-libs.h, carramba-libs, Carramba Libs API Reference}.
+@end iftex
+@end ifnottex
+@ifhtml @xref{Header file, carramba-libs.h}
+@end ifhtml
 
 Usage:
 @example
@@ -367,6 +378,35 @@ int carramba_libs_api_test(const char* number)
 @end example
 
 This function is simple implementation of all library test function - one function, all test!
+
+@node pkg-config support, Header file, API function, Top
+@chapter pkg-config support
+@cindex carramba-0.1.pc
+
+Library provides @code{pkg-config} support by generate @code{carramba-0.1.pc} file. What's inside file?
+
+***********
+@example
+
+prefix=/usr/local
+exec_prefix=$@{prefix@}
+libdir=$@{exec_prefix@}/lib
+includedir=$@{prefix@}/include
+ 
+ 
+Name: Carramba Libs
+Description: Carramba Libs - library for validate IBAN, NIP, REGON, PESEL
+Version: 0.0.1
+Libs: -L$@{libdir@} -Wl,-rpath -Wl,$@{exec_prefix@}/lib -lcarramba  -lgmp
+Cflags: -I$@{includedir@}
+
+@end example
+***********
+
+To compile, just use code: 
+
+@code{gcc ... `pkg-config --libs carramba-0.1 --cflags carramba-0.1 --with-path=/path/to/pkgconfig`}
+
 
 @node Header file, Index, API function, Top
 @chapter Header file
