@@ -223,10 +223,10 @@ int iban_validation_test(const char* iban)
 This function provides validate functionality by checking checksum of input string. Return value is depend of that, if input string is valid @code{RETURN_CODE_VALID} or not @code{RETURN_CODE_INVALID}. These two constants are defined in header file
 @ifnottex
 @xref{Header file, carramba-libs.h, carramba-libs.h, carramba-libs, Carramba Libs API Reference}.
+@end ifnottex
 @iftex
 @xref{Header file, carramba-libs.h, carramba-libs.h, carramba-libs, Carramba Libs API Reference}.
 @end iftex
-@end ifnottex
 @ifhtml @xref{Header file, carramba-libs.h}
 @end ifhtml
 
