@@ -418,13 +418,15 @@ int main(int argc, char **argv)
 	printf("%s\n", about);
 //---------------------------------------------------------------	
 	input = (char*)malloc(k*sizeof(char));
-	input = readline("Enter personal number (PESEL|NIP|REGON|IBAN)\n(button ENTER end input)\n(max. 64 characters in line): ");
+	input = readline("Enter personal number (PESEL|NIP|REGON|IBAN) \ 
+\n(button ENTER end input) \ 
+\n(max. 64 characters in line): ");
 	printf("\n");
 //---------------------------------------------------------------
 	int @var{len} = strlen(input);
 	if (len == 0 )
 	@{
-		printf("Błąd wprowadzania...\nKończę działanie!\n");
+		printf("Input error...\nEnds jobs!\n");
 		if(input)
 			free(input);
 		exit(EXIT_FAILURE);
@@ -474,7 +476,6 @@ gcc example01.c -o example01 -lreadline \
 
 Library provide @code{pkg-config} support by generate @code{carramba-0.1.pc} file. What's inside file?
 
-***********
 @example
 
 prefix=/usr/local
@@ -490,11 +491,14 @@ Libs: -L$@{libdir@} -Wl,-rpath -Wl,$@{exec_prefix@}/lib -lcarramba  -lgmp
 Cflags: -I$@{includedir@}
 
 @end example
-***********
 
 To compile, just use code: 
+@example
 
-@code{gcc ... `pkg-config --libs carramba-0.1 --cflags carramba-0.1 --with-path=/path/to/pkgconfig`}
+gcc ... `pkg-config --libs carramba-0.1 --cflags \
+ carramba-0.1 --with-path=/path/to/pkgconfig`
+
+@end example
 
 
 @node Header file, Index, API function, Top
