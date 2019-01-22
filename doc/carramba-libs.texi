@@ -56,12 +56,21 @@ along with @value{PROGNAME}.  If not, see <@uref{http://www.gnu.org/licenses/}>.
 @c Output the table of contents at the beginning
 @contents
 
-@ifnottex
+@iftex
 @node Top
 @top Carramba Libs API Reference
 @cindex Top
 
 What is Carramba Libs? It is a library written for validate personal number like: PESEL, IBAN, NIP, REGON. These numbers are polish personal numbers and are use in Polish goverment administrations. For what was library such as Carramba Libs written? In many country, polish citizens travels, working and enjoys own free time. In business contacts knowledge whois my partner is very important and I will be told, nothing is much importants like these knowledge. Personal numbers like NIP and REGON identify the partner in business directly. When you travel outside our contry, PESEL number do these same. And is very important for users => this library uses Open Source licensing models and you can look inside and test if it is useful and secure for you.
+
+@end iftex
+
+@ifnottex
+@node Top
+@top Carramba Libs API Reference
+@cindex Top
+
+Carramba Libs API Reference Manual. Carramba Libs is a library prepared for check correctness imoprtant personal numbers like PESEL, NIP, REGON and IBAN.
  
 @menu
 * A piece of theory::   introduction to theory of validation personal numbers.
@@ -75,7 +84,7 @@ What is Carramba Libs? It is a library written for validate personal number like
 
 @end ifnottex
 
-@node A piece of theory, Index, Top
+@node A piece of theory, PESEL number, Top
 @chapter A piece of theory.
 @cindex A piece of theory.
 
@@ -140,8 +149,9 @@ weight[] = @{6,5,7,2,3,4,5,6,7@}; => balance
 
 @end example
 
-@node REGON number, IBAN number, A piece of theory, A piece of theory
+@node REGON number, IBAN number, NIP number, A piece of theory
 @section REGON number
+@cindex REGON number
 
 REGON number consists of 7, 9 or 14 digits, where the last of digits is a checksum. As with the numbers NIP and PESEL, digits from the REGON number are multiplied by the weight, the products are added to each other and the sum calculated modulo 11
 
@@ -156,7 +166,7 @@ if checksum == 10; then checksum = 0;
 
 The calculation is made as for the other numbers.
 
-@node IBAN number, API function, A piece of theory
+@node IBAN number, API function, REGON number, A piece of theory
 @section IBAN number
 @cindex IBAN number
 
@@ -194,7 +204,7 @@ after changing letters into a string of digits, we obtained a string of numbers 
 
 A similar algorithm applies in other countries using the IBAN system.
 
-@node API function, pkg-config support, A piece of theory, Top
+@node API function, iban_validation_test, A piece of theory, Top
 @chapter API function
 @cindex API function
 @cindex API library function
@@ -213,6 +223,7 @@ int carramba_libs_api_test(const char *number)
 
 These function are provided by @value{PROGNAME}, below I will provide a more detailed description of each function. 
 
+@node iban_validation_test, regon_validation_test, API function
 @section IBAN validation function
 @findex iban_validation_test()
 
@@ -221,14 +232,7 @@ int iban_validation_test(const char* iban)
 @end example
 
 This function provides validate functionality by checking checksum of input string. Return value is depend of that, if input string is valid @code{RETURN_CODE_VALID} or not @code{RETURN_CODE_INVALID}. These two constants are defined in header file
-@ifnottex
 @xref{Header file, carramba-libs.h, carramba-libs.h, carramba-libs, Carramba Libs API Reference}.
-@end ifnottex
-@iftex
-@xref{Header file, carramba-libs.h, carramba-libs.h, carramba-libs, Carramba Libs API Reference}.
-@end iftex
-@ifhtml @xref{Header file, carramba-libs.h}
-@end ifhtml
 
 Usage:
 @example
@@ -259,6 +263,7 @@ free(buffer);
 
 Like you see implementation is very simply.
 
+@node regon_validation_test, pesel_validation_test, iban_validation_test, API function
 @section REGON validation function
 @findex regon_validation_test()
 
@@ -297,6 +302,8 @@ exit(EXIT_SUCCESS);
 
 What this example does? The first you must declare some variable and of course tested number REGON. Next in condition @code{if ... esle} you tested length of string and if are valid, use library function to test correctness of input number. Correct length of REGON are: 7, 9 or 14 digits. Return value is tested by conditional @code{if test == RETURN_CODE_VALID} and if test is TRUE, is printed response at stdin output. Constants @code{RETURN_VALUE_VALID} is defined in header file @xref{Header file, carramba-libs.h, carramba-libs.h, carramba-libs, Carramba Libs API Reference}, like also @code{RETURN_CODE_INVALID}. Returned value are equal to 1 and -1. Return value is always integer.
 
+
+@node pesel_validation_test, nip_validation_test, regon_validation_test, API function
 @section PESEL validation function
 @findex pesel_validation_test()
 
@@ -331,6 +338,7 @@ exit(EXIT_SUCCESS);
 
 Like you see above, it is easy to use this function.
 
+@node nip_validation_test, carramba_libs_version, pesel_validation_test, API function
 @section NIP validation function
 @findex nip_validation_test()
 
@@ -340,6 +348,7 @@ int nip_validation_test(const char* nip)
 
 NIP number consist of 10 digits, it represents business entity and payer of contributions and taxes. Usage is like shown above
 
+@node carramba_libs_version, carramba_libs_info, nip_validation_test, API function
 @section Carramba Libs version print
 @findex carramba_libs_version()
 
@@ -349,6 +358,7 @@ const char* carramba_libs_version()
 
 This function return veriosn package version number, which is the same as library version number.
 
+@node carramba_libs_info, carramba_libs_api_test, API function
 @section Carramba Libs info print
 @findex carramba_libs_info()
 
@@ -370,6 +380,8 @@ INFO_FORMAT_MARKUP
 
 which allows you to prepare the return value in an adjacent format.
 
+
+@node carramba_libs_api_test, pkg-config support, carramba_libs_info, API function
 @section Carramba Libs test function
 @findex carramba_libs_api_test()
 
@@ -379,11 +391,88 @@ int carramba_libs_api_test(const char* number)
 
 This function is simple implementation of all library test function - one function, all test!
 
+@example
+
+/*
+ * example01.c
+ *  
+ */
+
+#include <carramba-libs.h>
+#include <readline/readline.h>
+#include <readline/history.h>
+#include <malloc.h>
+#include <locale.h>
+
+void show_answer(int @var{rest}, const char *@var{input});
+
+int main(int argc, char **argv)
+@{
+	char *@var{input}; 
+	int @var{rest} = 0;
+	int @var{k} = 65;  
+//---------------------------------------------------------------
+	setlocale(LC_ALL, "pl_PL.UTF-8");
+//---------------------------------------------------------------	
+	const char *about = carramba_libs_info(INFO_FORMAT_PLAINTEXT);
+	printf("%s\n", about);
+//---------------------------------------------------------------	
+	input = (char*)malloc(k*sizeof(char));
+	input = readline("Enter personal number (PESEL|NIP|REGON|IBAN)\n(button ENTER end input)\n(max. 64 characters in line): ");
+	printf("\n");
+//---------------------------------------------------------------
+	int @var{len} = strlen(input);
+	if (len == 0 )
+	@{
+		printf("Błąd wprowadzania...\nKończę działanie!\n");
+		if(input)
+			free(input);
+		exit(EXIT_FAILURE);
+		
+	@}	
+//---------------------------------------------------------------
+	rest = carramba_libs_api_test(input);	
+//---------------------------------------------------------------
+	show_answer(rest, input);
+//---------------------------------------------------------------	
+	if (input)
+		free(input);		
+//---------------------------------------------------------------
+	exit(EXIT_SUCCESS);
+@}
+
+
+void show_answer(int @var{rest},  const char *@var{input})
+@{
+	int len = strlen(input);
+
+	if (rest == RETURN_CODE_VALID && len == 11)
+		printf("Number: %s is valid PESEL\n", input);
+	else if ( rest == RETURN_CODE_VALID && (len == 10 || len == 12))
+		printf("Number: %s is valid NIP!\n", input);
+	else if (rest == RETURN_CODE_VALID && (len == 7 || len == 9 || len == 14))
+		printf("Number: %s is valid REGON\n", input);
+	else if ( rest == RETURN_CODE_VALID && len > 14 )
+		printf("Number %s is valid IBAN!\n", input);
+	else
+		printf("You enter incorrect number!\nEnded jobs!\n");
+@}		
+
+@end example
+
+To build type:
+
+@example
+gcc example01.c -o example01 -lreadline \
+ `pkg-config --libs carramba-0.1 --cflags carramba-0.1 \ 
+--with-path=/usr/local/lib/pkgconfig`
+@end example
+
 @node pkg-config support, Header file, API function, Top
 @chapter pkg-config support
 @cindex carramba-0.1.pc
 
-Library provides @code{pkg-config} support by generate @code{carramba-0.1.pc} file. What's inside file?
+Library provide @code{pkg-config} support by generate @code{carramba-0.1.pc} file. What's inside file?
 
 ***********
 @example
@@ -523,19 +612,19 @@ more ...
 
 at the top of source file.
 
-@node Index, Function Index, Top 
+@node Index, Function Index, Header file, Top 
 @unnumbered Index
 @cindex Index
 
 @printindex cp
 
-@node Function Index, Copying, Top
+@node Function Index, Copying, Index, Top
 @unnumbered Function Index
 @cindex Function Index
 
 @printindex fn
 
-@node Copying, Top
+@node Copying, Top, Function Index, Top
 @appendix GNU Free Documentation License
 
 @cindex GNU FDL 

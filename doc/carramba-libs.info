@@ -39,17 +39,9 @@ File: carramba-libs.info,  Node: Top,  Next: A piece of theory,  Up: (dir)
 Carramba Libs API Reference
 ***************************
 
-What is Carramba Libs?  It is a library written for validate personal
-number like: PESEL, IBAN, NIP, REGON. These numbers are polish personal
-numbers and are use in Polish goverment administrations.  For what was
-library such as Carramba Libs written?  In many country, polish citizens
-travels, working and enjoys own free time.  In business contacts
-knowledge whois my partner is very important and I will be told, nothing
-is much importants like these knowledge.  Personal numbers like NIP and
-REGON identify the partner in business directly.  When you travel
-outside our contry, PESEL number do these same.  And is very important
-for users => this library uses Open Source licensing models and you can
-look inside and test if it is useful and secure for you.
+Carramba Libs API Reference Manual.  Carramba Libs is a library prepared
+for check correctness imoprtant personal numbers like PESEL, NIP, REGON
+and IBAN.
 
 * Menu:
 
@@ -62,7 +54,7 @@ look inside and test if it is useful and secure for you.
 * Copying::             Your rights and freedoms.
 
 
-File: carramba-libs.info,  Node: A piece of theory,  Next: Index,  Prev: Top
+File: carramba-libs.info,  Node: A piece of theory,  Next: PESEL number,  Prev: Top
 
 1 A piece of theory.
 ********************
@@ -132,7 +124,7 @@ products to each other and calculate the checksum mod 11
 
 
 
-File: carramba-libs.info,  Node: REGON number,  Next: IBAN number,  Prev: A piece of theory,  Up: A piece of theory
+File: carramba-libs.info,  Node: REGON number,  Next: IBAN number,  Prev: NIP number,  Up: A piece of theory
 
 1.3 REGON number
 ================
@@ -152,7 +144,7 @@ other and the sum calculated modulo 11
    The calculation is made as for the other numbers.
 
 
-File: carramba-libs.info,  Node: IBAN number,  Next: API function,  Prev: A piece of theory
+File: carramba-libs.info,  Node: IBAN number,  Next: API function,  Prev: REGON number,  Up: A piece of theory
 
 1.4 IBAN number
 ===============
@@ -195,7 +187,7 @@ specify the customer’s account number.
    A similar algorithm applies in other countries using the IBAN system.
 
 
-File: carramba-libs.info,  Node: API function,  Next: pkg-config support,  Prev: A piece of theory,  Up: Top
+File: carramba-libs.info,  Node: API function,  Next: iban_validation_test,  Prev: A piece of theory,  Up: Top
 
 2 API function
 **************
@@ -212,6 +204,19 @@ In this chapter I describe function provided by the library.
 
    These function are provided by Carramba Libs Package, below I will
 provide a more detailed description of each function.
+
+* Menu:
+
+* iban_validation_test::
+* regon_validation_test::
+* pesel_validation_test::
+* nip_validation_test::
+* carramba_libs_version::
+* carramba_libs_info::
+* carramba_libs_api_test::
+
+
+File: carramba-libs.info,  Node: iban_validation_test,  Next: regon_validation_test,  Prev: API function
 
 2.1 IBAN validation function
 ============================
@@ -250,6 +255,9 @@ file.
 
 
    Like you see implementation is very simply.
+
+
+File: carramba-libs.info,  Node: regon_validation_test,  Next: pesel_validation_test,  Prev: iban_validation_test,  Up: API function
 
 2.2 REGON validation function
 =============================
@@ -296,6 +304,9 @@ carramba-libs.h: (carramba-libs)Header file, like also
 ‘RETURN_CODE_INVALID’.  Returned value are equal to 1 and -1.  Return
 value is always integer.
 
+
+File: carramba-libs.info,  Node: pesel_validation_test,  Next: nip_validation_test,  Prev: regon_validation_test,  Up: API function
+
 2.3 PESEL validation function
 =============================
 
@@ -328,6 +339,9 @@ and it also lets you check your gender(not implemented yet).  Usage:
 
    Like you see above, it is easy to use this function.
 
+
+File: carramba-libs.info,  Node: nip_validation_test,  Next: carramba_libs_version,  Prev: pesel_validation_test,  Up: API function
+
 2.4 NIP validation function
 ===========================
 
@@ -336,6 +350,9 @@ and it also lets you check your gender(not implemented yet).  Usage:
    NIP number consist of 10 digits, it represents business entity and
 payer of contributions and taxes.  Usage is like shown above
 
+
+File: carramba-libs.info,  Node: carramba_libs_version,  Next: carramba_libs_info,  Prev: nip_validation_test,  Up: API function
+
 2.5 Carramba Libs version print
 ===============================
 
@@ -343,6 +360,9 @@ payer of contributions and taxes.  Usage is like shown above
 
    This function return veriosn package version number, which is the
 same as library version number.
+
+
+File: carramba-libs.info,  Node: carramba_libs_info,  Next: carramba_libs_api_test,  Prev: API function
 
 2.6 Carramba Libs info print
 ============================
@@ -363,6 +383,9 @@ Variable FORMAT can take one of the third values:
 
    which allows you to prepare the return value in an adjacent format.
 
+
+File: carramba-libs.info,  Node: carramba_libs_api_test,  Next: pkg-config support,  Prev: carramba_libs_info,  Up: API function
+
 2.7 Carramba Libs test function
 ===============================
 
@@ -371,14 +394,87 @@ Variable FORMAT can take one of the third values:
    This function is simple implementation of all library test function -
 one function, all test!
 
+
+     /*
+      * example01.c
+      *
+      */
+
+     #include <carramba-libs.h>
+     #include <readline/readline.h>
+     #include <readline/history.h>
+     #include <malloc.h>
+     #include <locale.h>
+
+     void show_answer(int REST, const char *INPUT);
+
+     int main(int argc, char **argv)
+     {
+     	char *INPUT;
+     	int REST = 0;
+     	int K = 65;
+     //---------------------------------------------------------------
+     	setlocale(LC_ALL, "pl_PL.UTF-8");
+     //---------------------------------------------------------------
+     	const char *about = carramba_libs_info(INFO_FORMAT_PLAINTEXT);
+     	printf("%s\n", about);
+     //---------------------------------------------------------------
+     	input = (char*)malloc(k*sizeof(char));
+     	input = readline("Enter personal number (PESEL|NIP|REGON|IBAN)\n(button ENTER end input)\n(max. 64 characters in line): ");
+     	printf("\n");
+     //---------------------------------------------------------------
+     	int LEN = strlen(input);
+     	if (len == 0 )
+     	{
+     		printf("Błąd wprowadzania...\nKończę działanie!\n");
+     		if(input)
+     			free(input);
+     		exit(EXIT_FAILURE);
+
+     	}
+     //---------------------------------------------------------------
+     	rest = carramba_libs_api_test(input);
+     //---------------------------------------------------------------
+     	show_answer(rest, input);
+     //---------------------------------------------------------------
+     	if (input)
+     		free(input);
+     //---------------------------------------------------------------
+     	exit(EXIT_SUCCESS);
+     }
+
+
+     void show_answer(int REST,  const char *INPUT)
+     {
+     	int len = strlen(input);
+
+     	if (rest == RETURN_CODE_VALID && len == 11)
+     		printf("Number: %s is valid PESEL\n", input);
+     	else if ( rest == RETURN_CODE_VALID && (len == 10 || len == 12))
+     		printf("Number: %s is valid NIP!\n", input);
+     	else if (rest == RETURN_CODE_VALID && (len == 7 || len == 9 || len == 14))
+     		printf("Number: %s is valid REGON\n", input);
+     	else if ( rest == RETURN_CODE_VALID && len > 14 )
+     		printf("Number %s is valid IBAN!\n", input);
+     	else
+     		printf("You enter incorrect number!\nEnded jobs!\n");
+     }
+
+
+   To build type:
+
+     gcc example01.c -o example01 -lreadline \
+      `pkg-config --libs carramba-0.1 --cflags carramba-0.1 \
+     --with-path=/usr/local/lib/pkgconfig`
+
 
 File: carramba-libs.info,  Node: pkg-config support,  Next: Header file,  Prev: API function,  Up: Top
 
 3 pkg-config support
 ********************
 
-Library provides ‘pkg-config’ support by generate ‘carramba-0.1.pc’
-file.  What’s inside file?
+Library provide ‘pkg-config’ support by generate ‘carramba-0.1.pc’ file.
+What’s inside file?
 
    ***********
 
@@ -510,7 +606,7 @@ function.  Next we have standard in header file, function definitions:
    at the top of source file.
 
 
-File: carramba-libs.info,  Node: Index,  Next: Function Index,  Prev: Top
+File: carramba-libs.info,  Node: Index,  Next: Function Index,  Prev: Header file,  Up: Top
 
 Index
 *****
@@ -530,10 +626,11 @@ Index
 * Index:                                 Index.                 (line 6)
 * NIP number:                            NIP number.            (line 6)
 * PESEL number:                          PESEL number.          (line 6)
+* REGON number:                          REGON number.          (line 6)
 * Top:                                   Top.                   (line 6)
 
 
-File: carramba-libs.info,  Node: Function Index,  Next: Copying,  Prev: Top
+File: carramba-libs.info,  Node: Function Index,  Next: Copying,  Prev: Index,  Up: Top
 
 Function Index
 **************
@@ -541,16 +638,17 @@ Function Index
  [index ]
 * Menu:
 
-* carramba_libs_api_test():              API function.        (line 172)
-* carramba_libs_info():                  API function.        (line 153)
-* carramba_libs_version():               API function.        (line 145)
-* iban_validation_test():                API function.        (line  22)
-* nip_validation_test():                 API function.        (line 137)
-* pesel_validation_test():               API function.        (line 105)
-* regon_validation_test():               API function.        (line  60)
+* carramba_libs_api_test():              carramba_libs_api_test.
+                                                                (line 6)
+* carramba_libs_info():                  carramba_libs_info.    (line 6)
+* carramba_libs_version():               carramba_libs_version. (line 6)
+* iban_validation_test():                iban_validation_test.  (line 6)
+* nip_validation_test():                 nip_validation_test.   (line 6)
+* pesel_validation_test():               pesel_validation_test. (line 6)
+* regon_validation_test():               regon_validation_test. (line 6)
 
 
-File: carramba-libs.info,  Node: Copying,  Next: Top
+File: carramba-libs.info,  Node: Copying,  Next: Top,  Prev: Function Index,  Up: Top
 
 Appendix A GNU Free Documentation License
 *****************************************
@@ -1748,17 +1846,24 @@ please read <https://www.gnu.org/licenses/why-not-lgpl.html>.
 
 Tag Table:
 Node: Top1478
-Node: A piece of theory2752
-Node: PESEL number3251
-Node: NIP number3868
-Node: REGON number4761
-Node: IBAN number5382
-Node: API function7015
-Node: pkg-config support11991
-Node: Header file12759
-Node: Index14930
-Node: Function Index15991
-Node: Copying16634
+Node: A piece of theory2145
+Node: PESEL number2651
+Node: NIP number3268
+Node: REGON number4161
+Node: IBAN number4775
+Node: API function6427
+Node: iban_validation_test7282
+Node: regon_validation_test8246
+Node: pesel_validation_test9938
+Node: nip_validation_test10861
+Node: carramba_libs_version11232
+Node: carramba_libs_info11573
+Node: carramba_libs_api_test12129
+Node: pkg-config support14892
+Node: Header file15658
+Node: Index17829
+Node: Function Index18981
+Node: Copying19701
 
 End Tag Table
 
