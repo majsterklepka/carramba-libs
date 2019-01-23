@@ -43,10 +43,10 @@ along with @value{PROGNAME}.  If not, see <@uref{http://www.gnu.org/licenses/}>.
 @end direntry
 
 @titlepage
-@title Carramba Libs API Reference
-@subtitle for for version @value{VERSION}, @value{UPDATED}
+@title Carramba Libs API Reference Manual
+@subtitle for version @value{VERSION}, @value{UPDATED}
  
-@author Pawel Sobotka (@email{starywandal@@onet.pl})
+@author Pawel Sobotka <@email{starywandal@@onet.pl}>
 
 @page
 @vskip 0pt plus 1filll
@@ -59,16 +59,16 @@ along with @value{PROGNAME}.  If not, see <@uref{http://www.gnu.org/licenses/}>.
 @iftex
 @node Top
 @top Carramba Libs API Reference
-@cindex Top
+@cindex About this manual
 
-What is Carramba Libs? It is a library written for validate personal number like: PESEL, IBAN, NIP, REGON. These numbers are polish personal numbers and are use in Polish goverment administrations. For what was library such as Carramba Libs written? In many country, polish citizens travels, working and enjoys own free time. In business contacts knowledge whois my partner is very important and I will be told, nothing is much importants like these knowledge. Personal numbers like NIP and REGON identify the partner in business directly. When you travel outside our contry, PESEL number do these same. And is very important for users => this library uses Open Source licensing models and you can look inside and test if it is useful and secure for you.
+What is Carramba Libs? It is a library written for validate personal number like: PESEL, IBAN, NIP, REGON. These numbers are polish personal numbers and are use in Polish goverment administrations. For what was library such as Carramba Libs written? In many country, polish citizens travels, working and enjoys own free time. In business contacts knowledge whois my partner is very important and I will be told, nothing is much importants like these knowledge. Personal numbers like NIP and REGON identify the partner in business directly. When you travel outside our contry, PESEL number do these same. And is very important for users @result{} this library uses Open Source licensing models and you can look inside and test if it is useful and secure for you.
 
 @end iftex
 
 @ifnottex
 @node Top
 @top Carramba Libs API Reference
-@cindex Top
+@cindex About this manual
 
 Carramba Libs API Reference Manual. Carramba Libs is a library prepared for check correctness imoprtant personal numbers like PESEL, NIP, REGON and IBAN.
  
@@ -124,7 +124,7 @@ weight[] = @{1,3,7,9,1,1,3,7,9,1@}; => balance
 @section NIP number
 @cindex NIP number
 
-The NIP number consists of 9 digits and the last 10 is the checksum. You can find out more about the NIP number on the Internet. How to calculate the checksum? It is very simple ...
+The NIP number consists of 9 digits and the last 10 is the checksum. You can find out more about the NIP number on the Internet. How to calculate the checksum? It is very simple @dots{}
 
 @example
 
@@ -232,14 +232,23 @@ int iban_validation_test(const char* iban)
 @end example
 
 This function provides validate functionality by checking checksum of input string. Return value is depend of that, if input string is valid @code{RETURN_CODE_VALID} or not @code{RETURN_CODE_INVALID}. These two constants are defined in header file
-@xref{Header file, carramba-libs.h, carramba-libs.h, carramba-libs, Carramba Libs API Reference}.
+@ifinfo 
+@pxref{Header file, carramba-libs.h, carramba-libs,carramba-libs,Carramba Libs API Reference Manual}.
+@end ifinfo
+@iftex
+@xref{Header file, carramba-libs.h, carramba-libs,carramba-libs,Carramba Libs API Reference Manual} .
+@end iftex
+@ifhtml
+@pxref{Header file, carramba-libs.h, carramba-libs.h}.
+@end ifhtml
+
 
 Usage:
 @example
 
 #include    <carramba-libs.h>
 #include    <malloc.h>
-...
+@dots{}
 
 int test = 0;
 char *buffer = (char*)malloc(40*sizeof(char));
@@ -257,7 +266,7 @@ else
 
 free(buffer);
 
-...
+@enddots{}
 
 @end example
 
@@ -277,7 +286,7 @@ This library function test correctness of REGON number.  The REGON number is use
 
 #include <carramba-libs.h>
 
-...
+@dots{}
 
 const char* number = "";//here put your REGON number
 int test = 0;//default value, that's nothings means
@@ -294,13 +303,13 @@ if (test == RETURN_CODE_VALID)
 else
     printf("This %s is invalid REGON number", number);
     
-...
+@enddots{}
 
 exit(EXIT_SUCCESS); 
 
 @end example 
 
-What this example does? The first you must declare some variable and of course tested number REGON. Next in condition @code{if ... esle} you tested length of string and if are valid, use library function to test correctness of input number. Correct length of REGON are: 7, 9 or 14 digits. Return value is tested by conditional @code{if test == RETURN_CODE_VALID} and if test is TRUE, is printed response at stdin output. Constants @code{RETURN_VALUE_VALID} is defined in header file @xref{Header file, carramba-libs.h, carramba-libs.h, carramba-libs, Carramba Libs API Reference}, like also @code{RETURN_CODE_INVALID}. Returned value are equal to 1 and -1. Return value is always integer.
+What this example does? The first you must declare some variable and of course tested number REGON. Next in condition @code{if @dots{} esle} you tested length of string and if are valid, use library function to test correctness of input number. Correct length of REGON are: 7, 9 or 14 digits. Return value is tested by conditional @code{if test == RETURN_CODE_VALID} and if test is TRUE, is printed response at stdin output. Constants @code{RETURN_VALUE_VALID} is defined in header file @xref{Header file, carramba-libs.h, carramba-libs.h, carramba-libs, Carramba Libs API Reference}, like also @code{RETURN_CODE_INVALID}. Returned value are equal to 1 and -1. Return value is always integer.
 
 
 @node pesel_validation_test, nip_validation_test, regon_validation_test, API function
@@ -317,7 +326,7 @@ Personal number like PESEL are used for indentyfication individuals in the scope
 
 #include <carramba-libs.h>
 
-...
+@dots{}
 
 int test = 0;
 char *pesel = "";//put here your PESEL
@@ -412,7 +421,7 @@ int main(int argc, char **argv)
 	int @var{rest} = 0;
 	int @var{k} = 65;  
 //---------------------------------------------------------------
-	setlocale(LC_ALL, "pl_PL.UTF-8");
+	setlocale(LC_ALL, "C");
 //---------------------------------------------------------------	
 	const char *about = carramba_libs_info(INFO_FORMAT_PLAINTEXT);
 	printf("%s\n", about);
@@ -426,7 +435,7 @@ int main(int argc, char **argv)
 	int @var{len} = strlen(input);
 	if (len == 0 )
 	@{
-		printf("Input error...\nEnds jobs!\n");
+		printf("Input error@dots{}\nEnds jobs!\n");
 		if(input)
 			free(input);
 		exit(EXIT_FAILURE);
@@ -495,7 +504,7 @@ Cflags: -I$@{includedir@}
 To compile, just use code: 
 @example
 
-gcc ... `pkg-config --libs carramba-0.1 --cflags \
+gcc @dots{} `pkg-config --libs carramba-0.1 --cflags \
  carramba-0.1 --with-path=/path/to/pkgconfig`
 
 @end example
@@ -524,7 +533,7 @@ File @code{carramba-libs.h} is library header file. What is inside?
 #include <string.h>
 #include <ctype.h>
 
-...
+@enddots{}
 
 #endif /* CARRAMBA_LIBS_H_ */
 
@@ -558,7 +567,7 @@ Three all that are input value to one function @code{carramba_libs_info()}, they
 #ifndef CARRAMBA_LIBS_H_
 #define CARRAMBA_LIBS_H_
 
-...
+@enddots{}
 
 int iban_validation_test(const char *iban);
 
@@ -582,7 +591,7 @@ And include for manage purpose:
 
 @example
 
-...
+@dots{}
 
 #ifndef NIP_C_
 #define NIP_C_		1
@@ -600,7 +609,7 @@ And include for manage purpose:
 #define IBAN_C_		1
 #endif
 
-...
+@enddots{}
 
 @end example 
 
@@ -609,9 +618,12 @@ Application to work with this library need include header file:
 @example 
 #include   <carramba-libs.h>
 
-... 
+@dots{} 
 
-more ...
+more
+
+@enddots{}
+
 @end example
 
 at the top of source file.

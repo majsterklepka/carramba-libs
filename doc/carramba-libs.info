@@ -1,7 +1,7 @@
 This is carramba-libs.info, produced by makeinfo version 6.5 from
 carramba-libs.texi.
 
-This manual is for Carramba Libs Package (version 0.0.1, 21 January
+This manual is for Carramba Libs Package (version 0.0.1, 23 January
 2019)
 
    Copyright © 2019 Pawel Sobotka.
@@ -226,7 +226,7 @@ File: carramba-libs.info,  Node: iban_validation_test,  Next: regon_validation_t
    This function provides validate functionality by checking checksum of
 input string.  Return value is depend of that, if input string is valid
 ‘RETURN_CODE_VALID’ or not ‘RETURN_CODE_INVALID’.  These two constants
-are defined in header file *Note carramba-libs.h: (carramba-libs)Header
+are defined in header file *note carramba-libs.h: (carramba-libs)Header
 file.
 
    Usage:
@@ -414,19 +414,21 @@ one function, all test!
      	int REST = 0;
      	int K = 65;
      //---------------------------------------------------------------
-     	setlocale(LC_ALL, "pl_PL.UTF-8");
+     	setlocale(LC_ALL, "C");
      //---------------------------------------------------------------
      	const char *about = carramba_libs_info(INFO_FORMAT_PLAINTEXT);
      	printf("%s\n", about);
      //---------------------------------------------------------------
      	input = (char*)malloc(k*sizeof(char));
-     	input = readline("Enter personal number (PESEL|NIP|REGON|IBAN)\n(button ENTER end input)\n(max. 64 characters in line): ");
+     	input = readline("Enter personal number (PESEL|NIP|REGON|IBAN) \
+     \n(button ENTER end input) \
+     \n(max. 64 characters in line): ");
      	printf("\n");
      //---------------------------------------------------------------
      	int LEN = strlen(input);
      	if (len == 0 )
      	{
-     		printf("Błąd wprowadzania...\nKończę działanie!\n");
+     		printf("Input error...\nEnds jobs!\n");
      		if(input)
      			free(input);
      		exit(EXIT_FAILURE);
@@ -476,7 +478,6 @@ File: carramba-libs.info,  Node: pkg-config support,  Next: Header file,  Prev: 
 Library provide ‘pkg-config’ support by generate ‘carramba-0.1.pc’ file.
 What’s inside file?
 
-   ***********
 
      prefix=/usr/local
      exec_prefix=${prefix}
@@ -490,12 +491,12 @@ What’s inside file?
      Libs: -L${libdir} -Wl,-rpath -Wl,${exec_prefix}/lib -lcarramba  -lgmp
      Cflags: -I${includedir}
 
-   ***********
 
    To compile, just use code:
 
-   ‘gcc ... `pkg-config --libs carramba-0.1 --cflags carramba-0.1
---with-path=/path/to/pkgconfig`’
+     gcc ... `pkg-config --libs carramba-0.1 --cflags \
+      carramba-0.1 --with-path=/path/to/pkgconfig`
+
 
 
 File: carramba-libs.info,  Node: Header file,  Next: Index,  Prev: API function,  Up: Top
@@ -601,7 +602,10 @@ function.  Next we have standard in header file, function definitions:
 
      ...
 
-     more ...
+     more
+
+     ...
+
 
    at the top of source file.
 
@@ -615,6 +619,7 @@ Index
 * Menu:
 
 * A piece of theory.:                    A piece of theory.     (line 6)
+* About this manual:                     Top.                   (line 6)
 * API function:                          API function.          (line 6)
 * API library function:                  API function.          (line 6)
 * carramba-0.1.pc:                       pkg-config support.    (line 6)
@@ -627,7 +632,6 @@ Index
 * NIP number:                            NIP number.            (line 6)
 * PESEL number:                          PESEL number.          (line 6)
 * REGON number:                          REGON number.          (line 6)
-* Top:                                   Top.                   (line 6)
 
 
 File: carramba-libs.info,  Node: Function Index,  Next: Copying,  Prev: Index,  Up: Top
@@ -1859,11 +1863,11 @@ Node: nip_validation_test10861
 Node: carramba_libs_version11232
 Node: carramba_libs_info11573
 Node: carramba_libs_api_test12129
-Node: pkg-config support14892
-Node: Header file15658
-Node: Index17829
-Node: Function Index18981
-Node: Copying19701
+Node: pkg-config support14880
+Node: Header file15621
+Node: Index17799
+Node: Function Index18951
+Node: Copying19671
 
 End Tag Table
 
