@@ -427,15 +427,13 @@ int main(int argc, char **argv)
 	printf("%s\n", about);
 //---------------------------------------------------------------	
 	input = (char*)malloc(k*sizeof(char));
-	input = readline("Enter personal number (PESEL|NIP|REGON|IBAN) \ 
-\n(button ENTER end input) \ 
-\n(max. 64 characters in line): ");
+	input = readline("Enter personal number (PESEL|NIP|REGON|IBAN)\n@*(button ENTER ends input)\n(max. 64 characters in line): ");
 	printf("\n");
 //---------------------------------------------------------------
 	int @var{len} = strlen(input);
 	if (len == 0 )
 	@{
-		printf("Input error@dots{}\nEnds jobs!\n");
+		printf("Input error@dots{}\nEnded jobs!\n");
 		if(input)
 			free(input);
 		exit(EXIT_FAILURE);

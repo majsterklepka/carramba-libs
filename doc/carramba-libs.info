@@ -1,7 +1,7 @@
 This is carramba-libs.info, produced by makeinfo version 6.5 from
 carramba-libs.texi.
 
-This manual is for Carramba Libs Package (version 0.0.1, 23 January
+This manual is for Carramba Libs Package (version 0.0.1, 24 January
 2019)
 
    Copyright © 2019 Pawel Sobotka.
@@ -420,15 +420,14 @@ one function, all test!
      	printf("%s\n", about);
      //---------------------------------------------------------------
      	input = (char*)malloc(k*sizeof(char));
-     	input = readline("Enter personal number (PESEL|NIP|REGON|IBAN) \
-     \n(button ENTER end input) \
-     \n(max. 64 characters in line): ");
+     	input = readline("Enter personal number (PESEL|NIP|REGON|IBAN)\n
+     (button ENTER ends input)\n(max. 64 characters in line): ");
      	printf("\n");
      //---------------------------------------------------------------
      	int LEN = strlen(input);
      	if (len == 0 )
      	{
-     		printf("Input error...\nEnds jobs!\n");
+     		printf("Input error...\nEnded jobs!\n");
      		if(input)
      			free(input);
      		exit(EXIT_FAILURE);
@@ -1863,11 +1862,11 @@ Node: nip_validation_test10861
 Node: carramba_libs_version11232
 Node: carramba_libs_info11573
 Node: carramba_libs_api_test12129
-Node: pkg-config support14880
-Node: Header file15621
-Node: Index17799
-Node: Function Index18951
-Node: Copying19671
+Node: pkg-config support14872
+Node: Header file15613
+Node: Index17791
+Node: Function Index18943
+Node: Copying19663
 
 End Tag Table
 
