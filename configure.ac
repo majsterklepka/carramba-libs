@@ -41,8 +41,8 @@ AC_DEFINE_UNQUOTED([BUILD_CPU],["$build_cpu"],[build cpu])
 AC_DEFINE_UNQUOTED([BUILD_VENDOR],["$build_vendor"],[build vendor])
 AC_DEFINE_UNQUOTED([BUILD_OS],["$build_os"],[build os])
 
-carramba_libs="-L${libdir}/${PACKAGE} -Wl,-rpath -Wl,${libdir}/${PACKAGE} -lcarramba $GMP_LIBS"
-AC_SUBST([CARRAMBA_LIBS], [$carramba_libs])
+LDFLAGS="-Wl,-rpath -Wl,${libdir}/${PACKAGE}"
+LIBS="$GMP_LIBS"
 
 # Checks for header files.
 AC_CHECK_HEADERS([locale.h stdlib.h string.h])
@@ -54,6 +54,6 @@ AC_FUNC_MALLOC
 
 AC_CONFIG_FILES([Makefile])
 AC_CONFIG_FILES([doc/Makefile])
-AC_CONFIG_FILES([carramba-libs.pc:carramba.pc.in])
+AC_CONFIG_FILES([carramba-libs.pc])
 
 AC_OUTPUT

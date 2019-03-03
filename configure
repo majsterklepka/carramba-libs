@@ -636,7 +636,6 @@ ac_subst_vars='am__EXEEXT_FALSE
 am__EXEEXT_TRUE
 LTLIBOBJS
 LIBOBJS
-CARRAMBA_LIBS
 CPP
 LT_SYS_LIBRARY_PATH
 OTOOL64
@@ -13066,9 +13065,8 @@ cat >>confdefs.h <<_ACEOF
 _ACEOF
 
 
-carramba_libs="-L${libdir}/${PACKAGE} -Wl,-rpath -Wl,${libdir}/${PACKAGE} -lcarramba $GMP_LIBS"
-CARRAMBA_LIBS=$carramba_libs
-
+LDFLAGS="-Wl,-rpath -Wl,${libdir}/${PACKAGE}"
+LIBS="$GMP_LIBS"
 
 # Checks for header files.
 for ac_header in locale.h stdlib.h string.h
@@ -13160,7 +13158,7 @@ ac_config_files="$ac_config_files Makefile"
 
 ac_config_files="$ac_config_files doc/Makefile"
 
-ac_config_files="$ac_config_files carramba-libs.pc:carramba.pc.in"
+ac_config_files="$ac_config_files carramba-libs.pc"
 
 
 cat >confcache <<\_ACEOF
@@ -14180,7 +14178,7 @@ do
     "libtool") CONFIG_COMMANDS="$CONFIG_COMMANDS libtool" ;;
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
     "doc/Makefile") CONFIG_FILES="$CONFIG_FILES doc/Makefile" ;;
-    "carramba-libs.pc") CONFIG_FILES="$CONFIG_FILES carramba-libs.pc:carramba.pc.in" ;;
+    "carramba-libs.pc") CONFIG_FILES="$CONFIG_FILES carramba-libs.pc" ;;
 
   *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;
   esac
