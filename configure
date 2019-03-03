@@ -667,7 +667,6 @@ build_cpu
 build
 LIBTOOL
 DESCRIPTION
-API_VERSION
 PACKAGE_VERSION_MICRO
 PACKAGE_VERSION_MINOR
 PACKAGE_VERSION_MAJOR
@@ -4926,8 +4925,6 @@ PACKAGE_VERSION_MAJOR=0
 PACKAGE_VERSION_MINOR=0
 
 PACKAGE_VERSION_MICRO=1
-
-API_VERSION=0.1
 
 DESCRIPTION="$PACKAGE_NAME - library for validate IBAN, NIP, REGON, PESEL"
 
@@ -13043,7 +13040,7 @@ fi
 { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_gmp_main" >&5
 $as_echo "$ac_cv_lib_gmp_main" >&6; }
 if test "x$ac_cv_lib_gmp_main" = xyes; then :
-  HAVE_GMP=1, GMP_LIBS="$GMP_LIBS -lgmp"
+  HAVE_GMP=1, GMP_LIBS="$GMP_LIBS -L/usr/lib -lgmp"
 else
   gmp not instaled!
 fi
@@ -13069,7 +13066,7 @@ cat >>confdefs.h <<_ACEOF
 _ACEOF
 
 
-carramba_libs="-Wl,-rpath -Wl,${libdir} -lcarramba $GMP_LIBS"
+carramba_libs="-Wl,-rpath -Wl,${libdir}/${PACKAGE} -lcarramba $GMP_LIBS"
 CARRAMBA_LIBS=$carramba_libs
 
 
@@ -13163,7 +13160,7 @@ ac_config_files="$ac_config_files Makefile"
 
 ac_config_files="$ac_config_files doc/Makefile"
 
-ac_config_files="$ac_config_files carramba-$API_VERSION.pc:carramba.pc.in"
+ac_config_files="$ac_config_files carramba-libs.pc:carramba.pc.in"
 
 
 cat >confcache <<\_ACEOF
@@ -14183,7 +14180,7 @@ do
     "libtool") CONFIG_COMMANDS="$CONFIG_COMMANDS libtool" ;;
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
     "doc/Makefile") CONFIG_FILES="$CONFIG_FILES doc/Makefile" ;;
-    "carramba-$API_VERSION.pc") CONFIG_FILES="$CONFIG_FILES carramba-$API_VERSION.pc:carramba.pc.in" ;;
+    "carramba-libs.pc") CONFIG_FILES="$CONFIG_FILES carramba-libs.pc:carramba.pc.in" ;;
 
   *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;
   esac
@@ -15416,7 +15413,6 @@ ltmain=$ac_aux_dir/ltmain.sh
   chmod +x "$ofile"
 
  ;;
-    "carramba-$API_VERSION.pc":F) API_VERSION='$API_VERSION' ;;
 
   esac
 done # for ac_tag

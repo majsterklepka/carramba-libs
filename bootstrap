@@ -1,15 +1,15 @@
 #!/usr/bin/bash
 
-echo 'running aclocal ...'
+echo 'running aclocal...'
 aclocal --install
 
-echo 'running autoheader ...'
+echo 'running autoheader...'
 autoheader -f
 
-echo 'running automake ...'
+echo 'running automake...'
 automake -ac
 
-echo 'running autoreconf ...'
+echo 'running autoreconf...'
 autoreconf -fi
 
 

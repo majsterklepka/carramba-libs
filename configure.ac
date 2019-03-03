@@ -6,8 +6,6 @@ m4_define([package_version_major],[0])
 m4_define([package_version_minor],[0])
 m4_define([package_version_micro],[1])
 
-# API version
-m4_define([api_version],[0.1])
 
 AC_PREREQ([2.69])
 AC_INIT([Carramba Libs], [package_version_major.package_version_minor.package_version_micro], [starywandal@onet.pl])
@@ -29,7 +27,6 @@ PKG_INSTALLDIR
 AC_SUBST([PACKAGE_VERSION_MAJOR],package_version_major)
 AC_SUBST([PACKAGE_VERSION_MINOR],package_version_minor)
 AC_SUBST([PACKAGE_VERSION_MICRO],package_version_micro)
-AC_SUBST([API_VERSION],api_version)
 AC_SUBST([DESCRIPTION], ["$PACKAGE_NAME - library for validate IBAN, NIP, REGON, PESEL"])
 
 LT_INIT(disable-static)
@@ -38,13 +35,13 @@ AC_CANONICAL_BUILD
 
 # Checks for libraries.
 AC_LANG(C)
-AC_CHECK_LIB([gmp],[main],[HAVE_GMP=1, GMP_LIBS="$GMP_LIBS -lgmp"], [gmp not instaled!])
+AC_CHECK_LIB([gmp],[main],[HAVE_GMP=1, GMP_LIBS="$GMP_LIBS -L/usr/lib -lgmp"], [gmp not instaled!])
 AC_DEFINE_UNQUOTED([BUILDER],["$USER"],[maintainer/builder])
 AC_DEFINE_UNQUOTED([BUILD_CPU],["$build_cpu"],[build cpu])
 AC_DEFINE_UNQUOTED([BUILD_VENDOR],["$build_vendor"],[build vendor])
 AC_DEFINE_UNQUOTED([BUILD_OS],["$build_os"],[build os])
 
-carramba_libs="-Wl,-rpath -Wl,${libdir} -lcarramba $GMP_LIBS"
+carramba_libs="-L${libdir}/${PACKAGE} -Wl,-rpath -Wl,${libdir}/${PACKAGE} -lcarramba $GMP_LIBS"
 AC_SUBST([CARRAMBA_LIBS], [$carramba_libs])
 
 # Checks for header files.
@@ -57,6 +54,6 @@ AC_FUNC_MALLOC
 
 AC_CONFIG_FILES([Makefile])
 AC_CONFIG_FILES([doc/Makefile])
-AC_CONFIG_FILES([carramba-$API_VERSION.pc:carramba.pc.in],[API_VERSION='$API_VERSION'])
+AC_CONFIG_FILES([carramba-libs.pc:carramba.pc.in])
 
 AC_OUTPUT

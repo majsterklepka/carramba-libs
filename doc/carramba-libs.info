@@ -1,8 +1,7 @@
 This is carramba-libs.info, produced by makeinfo version 6.5 from
 carramba-libs.texi.
 
-This manual is for Carramba Libs Package (version 0.0.1, 24 January
-2019)
+This manual is for Carramba Libs Package (version 0.0.1, 3 March 2019)
 
    Copyright © 2019 Pawel Sobotka.
 
@@ -465,7 +464,7 @@ one function, all test!
    To build type:
 
      gcc example01.c -o example01 -lreadline \
-      `pkg-config --libs carramba-0.1 --cflags carramba-0.1 \
+      `pkg-config --libs carramba-libs --cflags carramba-libs \
      --with-path=/usr/local/lib/pkgconfig`
 
 
@@ -474,27 +473,28 @@ File: carramba-libs.info,  Node: pkg-config support,  Next: Header file,  Prev: 
 3 pkg-config support
 ********************
 
-Library provide ‘pkg-config’ support by generate ‘carramba-0.1.pc’ file.
-What’s inside file?
+Library provide ‘pkg-config’ support by generate ‘carramba-libs.pc’
+file.  What’s inside file?
 
 
-     prefix=/usr/local
+     prefix=@prefix@
      exec_prefix=${prefix}
-     libdir=${exec_prefix}/lib
-     includedir=${prefix}/include
+     package=@PACKAGE@
+     libdir=${exec_prefix}/lib/${package}
+     includedir=${prefix}/include/${package}
 
 
      Name: Carramba Libs
      Description: Carramba Libs - library for validate IBAN, NIP, REGON, PESEL
      Version: 0.0.1
-     Libs: -L${libdir} -Wl,-rpath -Wl,${exec_prefix}/lib -lcarramba  -lgmp
+     Libs: -L${libdir} -Wl,-rpath -Wl,${libdir} -lcarramba  -lgmp
      Cflags: -I${includedir}
 
 
    To compile, just use code:
 
-     gcc ... `pkg-config --libs carramba-0.1 --cflags \
-      carramba-0.1 --with-path=/path/to/pkgconfig`
+     gcc ... `pkg-config --libs carramba-libs --cflags \
+      carramba-libs --with-path=/path/to/pkgconfig`
 
 
 
@@ -1848,25 +1848,25 @@ please read <https://www.gnu.org/licenses/why-not-lgpl.html>.
 
 
 Tag Table:
-Node: Top1478
-Node: A piece of theory2145
-Node: PESEL number2651
-Node: NIP number3268
-Node: REGON number4161
-Node: IBAN number4775
-Node: API function6427
-Node: iban_validation_test7282
-Node: regon_validation_test8246
-Node: pesel_validation_test9938
-Node: nip_validation_test10861
-Node: carramba_libs_version11232
-Node: carramba_libs_info11573
-Node: carramba_libs_api_test12129
-Node: pkg-config support14872
-Node: Header file15613
-Node: Index17791
-Node: Function Index18943
-Node: Copying19663
+Node: Top1475
+Node: A piece of theory2142
+Node: PESEL number2648
+Node: NIP number3265
+Node: REGON number4158
+Node: IBAN number4772
+Node: API function6424
+Node: iban_validation_test7279
+Node: regon_validation_test8243
+Node: pesel_validation_test9935
+Node: nip_validation_test10858
+Node: carramba_libs_version11229
+Node: carramba_libs_info11570
+Node: carramba_libs_api_test12126
+Node: pkg-config support14871
+Node: Header file15650
+Node: Index17828
+Node: Function Index18980
+Node: Copying19700
 
 End Tag Table
 
