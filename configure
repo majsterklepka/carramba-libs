@@ -13066,7 +13066,7 @@ cat >>confdefs.h <<_ACEOF
 _ACEOF
 
 
-carramba_libs="-Wl,-rpath -Wl,${libdir}/${PACKAGE} -lcarramba $GMP_LIBS"
+carramba_libs="-L${libdir}/${PACKAGE} -Wl,-rpath -Wl,${libdir}/${PACKAGE} -lcarramba $GMP_LIBS"
 CARRAMBA_LIBS=$carramba_libs
 
 

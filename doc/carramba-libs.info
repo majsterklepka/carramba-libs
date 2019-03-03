@@ -474,27 +474,28 @@ File: carramba-libs.info,  Node: pkg-config support,  Next: Header file,  Prev: 
 ********************
 
 Library provide ‘pkg-config’ support by generate ‘carramba-libs.pc’
-file.  What’s inside file?
+file.  What is inside file?
 
 
-     prefix=@prefix@
+     prefix=/usr/local
      exec_prefix=${prefix}
-     package=@PACKAGE@
-     libdir=${exec_prefix}/lib/${package}
+     package=carramba-libs
+     libdir=${exec_prefix}/lib
      includedir=${prefix}/include/${package}
 
 
      Name: Carramba Libs
      Description: Carramba Libs - library for validate IBAN, NIP, REGON, PESEL
      Version: 0.0.1
-     Libs: -L${libdir} -Wl,-rpath -Wl,${libdir} -lcarramba  -lgmp
+     Libs: -L${libdir} -L${exec_prefix}/lib/carramba-libs -Wl,-rpath -Wl,${exec_prefix}/lib/carramba-libs -lcarramba  -L/usr/lib -lgmp
      Cflags: -I${includedir}
+
 
 
    To compile, just use code:
 
      gcc ... `pkg-config --libs carramba-libs --cflags \
-      carramba-libs --with-path=/path/to/pkgconfig`
+      carramba-libs --with-path=${prefix}/lib/pkgconfig`
 
 
 
@@ -1863,10 +1864,10 @@ Node: carramba_libs_version11229
 Node: carramba_libs_info11570
 Node: carramba_libs_api_test12126
 Node: pkg-config support14871
-Node: Header file15650
-Node: Index17828
-Node: Function Index18980
-Node: Copying19700
+Node: Header file15719
+Node: Index17897
+Node: Function Index19049
+Node: Copying19769
 
 End Tag Table
 
