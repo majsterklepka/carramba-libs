@@ -465,7 +465,7 @@ one function, all test!
 
      gcc example01.c -o example01 -lreadline \
       `pkg-config --libs carramba-libs --cflags carramba-libs \
-     --with-path=${prefix}/lib/pkgconfig`
+     --with-path=${datadir}/pkgconfig`
 
 
 File: carramba-libs.info,  Node: pkg-config support,  Next: Header file,  Prev: API function,  Up: Top
@@ -480,25 +480,27 @@ file.  What is inside file?
      prefix=/usr/local
      exec_prefix=${prefix}
      package=carramba-libs
-     libdir=${exec_prefix}/lib
-     includedir=${prefix}/include/${package}
+     libdir=@libdir@
+     includedir=@includedir@
+     pkglibdir=${libdir}/${package}
+     pkgincludedir=${includedir}/${package}
 
 
      Name: Carramba Libs
      Description: Carramba Libs - library \
       for validate IBAN, NIP, REGON, PESEL
      Version: 0.0.1
-     Libs: -L${libdir} -L${exec_prefix}/lib/carramba-libs \
+     Libs: -L${pkglibdir} \
       -Wl,-rpath -Wl,${exec_prefix}/lib/carramba-libs \
       -lcarramba  -L/usr/lib -lgmp
-     Cflags: -I${includedir}
+     Cflags: -I${pkgincludedir}
 
 
 
    To compile, just use code:
 
      gcc ... `pkg-config --libs carramba-libs --cflags \
-      carramba-libs --with-path=${prefix}/lib/pkgconfig`
+      carramba-libs --with-path=${datadir}/pkgconfig`
 
 
 
@@ -1866,11 +1868,11 @@ Node: nip_validation_test10858
 Node: carramba_libs_version11229
 Node: carramba_libs_info11570
 Node: carramba_libs_api_test12126
-Node: pkg-config support14870
-Node: Header file15742
-Node: Index17920
-Node: Function Index19072
-Node: Copying19792
+Node: pkg-config support14867
+Node: Header file15761
+Node: Index17939
+Node: Function Index19091
+Node: Copying19811
 
 End Tag Table
 

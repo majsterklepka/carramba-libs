@@ -474,7 +474,7 @@ To build type:
 @example
 gcc example01.c -o example01 -lreadline \
  `pkg-config --libs carramba-libs --cflags carramba-libs \ 
---with-path=$@{prefix@}/lib/pkgconfig`
+--with-path=$@{datadir@}/pkgconfig`
 @end example
 
 @node pkg-config support, Header file, API function, Top
@@ -488,18 +488,20 @@ Library provide @code{pkg-config} support by generate @code{carramba-libs.pc} fi
 prefix=/usr/local
 exec_prefix=$@{prefix@}
 package=carramba-libs
-libdir=$@{exec_prefix@}/lib
-includedir=$@{prefix@}/include/$@{package@}
+libdir=@@libdir@@
+includedir=@@includedir@@
+pkglibdir=$@{libdir@}/$@{package@}
+pkgincludedir=$@{includedir@}/$@{package@}
  
  
 Name: Carramba Libs
 Description: Carramba Libs - library \ 
  for validate IBAN, NIP, REGON, PESEL
 Version: 0.0.1
-Libs: -L$@{libdir@} -L$@{exec_prefix@}/lib/carramba-libs \
+Libs: -L$@{pkglibdir@} \
  -Wl,-rpath -Wl,$@{exec_prefix@}/lib/carramba-libs \
  -lcarramba  -L/usr/lib -lgmp 
-Cflags: -I$@{includedir@}
+Cflags: -I$@{pkgincludedir@}
 
 
 @end example
@@ -508,7 +510,7 @@ To compile, just use code:
 @example
 
 gcc @dots{} `pkg-config --libs carramba-libs --cflags \
- carramba-libs --with-path=$@{prefix@}/lib/pkgconfig`
+ carramba-libs --with-path=$@{datadir@}/pkgconfig`
 
 @end example
 

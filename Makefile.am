@@ -9,11 +9,11 @@ bindir=@bindir@
 libdir=@libdir@
 includedir=@includedir@
 datadir=@datadir@
-pkgconfigdir = ${libdir}/pkgconfig
+pkgconfigdir = ${datadir}/pkgconfig
 mandir=@mandir@
 infodir=@infodir@
 docdir=${datadir}/doc/${PACKAGE}
-ACLOCAL_AMFLAGS = -I m4
+ACLOCAL_AMFLAGS = -I m4 --install
 
 SUBDIRS = doc 
 
