@@ -465,7 +465,7 @@ one function, all test!
 
      gcc example01.c -o example01 -lreadline \
       `pkg-config --libs carramba-libs --cflags carramba-libs \
-     --with-path=/usr/local/lib/pkgconfig`
+     --with-path=${prefix}/lib/pkgconfig`
 
 
 File: carramba-libs.info,  Node: pkg-config support,  Next: Header file,  Prev: API function,  Up: Top
@@ -485,9 +485,12 @@ file.  What is inside file?
 
 
      Name: Carramba Libs
-     Description: Carramba Libs - library for validate IBAN, NIP, REGON, PESEL
+     Description: Carramba Libs - library \
+      for validate IBAN, NIP, REGON, PESEL
      Version: 0.0.1
-     Libs: -L${libdir} -L${exec_prefix}/lib/carramba-libs -Wl,-rpath -Wl,${exec_prefix}/lib/carramba-libs -lcarramba  -L/usr/lib -lgmp
+     Libs: -L${libdir} -L${exec_prefix}/lib/carramba-libs \
+      -Wl,-rpath -Wl,${exec_prefix}/lib/carramba-libs \
+      -lcarramba  -L/usr/lib -lgmp
      Cflags: -I${includedir}
 
 
@@ -1863,11 +1866,11 @@ Node: nip_validation_test10858
 Node: carramba_libs_version11229
 Node: carramba_libs_info11570
 Node: carramba_libs_api_test12126
-Node: pkg-config support14871
-Node: Header file15719
-Node: Index17897
-Node: Function Index19049
-Node: Copying19769
+Node: pkg-config support14870
+Node: Header file15742
+Node: Index17920
+Node: Function Index19072
+Node: Copying19792
 
 End Tag Table
 
