@@ -481,22 +481,23 @@ gcc example01.c -o example01 -lreadline \
 @chapter pkg-config support
 @cindex carramba-0.1.pc
 
-Library provide @code{pkg-config} support by generate @code{carramba-libs.pc} file. What's inside file?
+Library provide @code{pkg-config} support by generate @code{carramba-libs.pc} file. What is inside file?
 
 @example
 
-prefix=@@prefix@@
+prefix=/usr/local
 exec_prefix=$@{prefix@}
-package=@@PACKAGE@@
-libdir=$@{exec_prefix@}/lib/$@{package@}
+package=carramba-libs
+libdir=$@{exec_prefix@}/lib
 includedir=$@{prefix@}/include/$@{package@}
  
  
 Name: Carramba Libs
 Description: Carramba Libs - library for validate IBAN, NIP, REGON, PESEL
 Version: 0.0.1
-Libs: -L$@{libdir@} -Wl,-rpath -Wl,$@{libdir@} -lcarramba  -lgmp
+Libs: -L$@{libdir@} -L$@{exec_prefix@}/lib/carramba-libs -Wl,-rpath -Wl,$@{exec_prefix@}/lib/carramba-libs -lcarramba  -L/usr/lib -lgmp 
 Cflags: -I$@{includedir@}
+
 
 @end example
 
@@ -504,7 +505,7 @@ To compile, just use code:
 @example
 
 gcc @dots{} `pkg-config --libs carramba-libs --cflags \
- carramba-libs --with-path=/path/to/pkgconfig`
+ carramba-libs --with-path=$@{prefix@}/lib/pkgconfig`
 
 @end example
 
