@@ -665,10 +665,8 @@ build_vendor
 build_cpu
 build
 LIBTOOL
+LIB_VERSION
 DESCRIPTION
-PACKAGE_VERSION_MICRO
-PACKAGE_VERSION_MINOR
-PACKAGE_VERSION_MAJOR
 pkgconfigdir
 PKG_CONFIG_LIBDIR
 PKG_CONFIG_PATH
@@ -4918,14 +4916,11 @@ pkgconfigdir=$with_pkgconfigdir
 
 
 
-
-PACKAGE_VERSION_MAJOR=0
-
-PACKAGE_VERSION_MINOR=0
-
-PACKAGE_VERSION_MICRO=1
-
 DESCRIPTION="$PACKAGE_NAME - library for validate IBAN, NIP, REGON, PESEL"
+
+
+#defining library version
+LIB_VERSION=0:1:0
 
 
 case `pwd` in
@@ -13065,7 +13060,7 @@ cat >>confdefs.h <<_ACEOF
 _ACEOF
 
 
-LDFLAGS="-Wl,-rpath -Wl,${libdir}/${PACKAGE}"
+LDFLAGS="-Wl,-rpath -Wl,${libdir}/$PACKAGE"
 LIBS="$GMP_LIBS"
 
 # Checks for header files.

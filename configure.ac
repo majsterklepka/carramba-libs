@@ -6,7 +6,6 @@ m4_define([package_version_major],[0])
 m4_define([package_version_minor],[0])
 m4_define([package_version_micro],[1])
 
-
 AC_PREREQ([2.69])
 AC_INIT([Carramba Libs], [package_version_major.package_version_minor.package_version_micro], [starywandal@onet.pl])
 AC_CONFIG_AUX_DIR([doc])
@@ -23,11 +22,10 @@ AC_PROG_CC
 PKG_PROG_PKG_CONFIG
 PKG_INSTALLDIR
 
-
-AC_SUBST([PACKAGE_VERSION_MAJOR],package_version_major)
-AC_SUBST([PACKAGE_VERSION_MINOR],package_version_minor)
-AC_SUBST([PACKAGE_VERSION_MICRO],package_version_micro)
 AC_SUBST([DESCRIPTION], ["$PACKAGE_NAME - library for validate IBAN, NIP, REGON, PESEL"])
+
+#defining library version
+AC_SUBST([LIB_VERSION], [package_version_major:package_version_micro:package_version_minor])
 
 LT_INIT(disable-static)
 
@@ -41,7 +39,7 @@ AC_DEFINE_UNQUOTED([BUILD_CPU],["$build_cpu"],[build cpu])
 AC_DEFINE_UNQUOTED([BUILD_VENDOR],["$build_vendor"],[build vendor])
 AC_DEFINE_UNQUOTED([BUILD_OS],["$build_os"],[build os])
 
-LDFLAGS="-Wl,-rpath -Wl,${libdir}/${PACKAGE}"
+LDFLAGS="-Wl,-rpath -Wl,${libdir}/$PACKAGE"
 LIBS="$GMP_LIBS"
 
 # Checks for header files.
