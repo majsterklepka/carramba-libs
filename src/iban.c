@@ -27,6 +27,7 @@
  *
  */
 
+#define _GNU_SOURCE
 #include <gmp.h>
 #include <assert.h>
 #include <carramba-libs.h>
@@ -55,6 +56,8 @@ int iban_validation_test(const char *iban)
 {
 	int i, j, l, sz;//auxiliary variables used inside procedure
 
+	int errsv = 0;
+
 	unsigned long int resp;//output variable
 
 	mpz_t n;//biginteger - variable with converted string
@@ -81,7 +84,7 @@ int iban_validation_test(const char *iban)
 
 //the first test to check if the length of the input string corresponds to the length of the sequence specified for the given country
 	if (!valid_cc(iban, sz))
-		return RETURN_CODE_INVALID;
+		return EXIT_FAILURE;
 	
 //----------------------------------------------------------
 
@@ -90,8 +93,9 @@ int iban_validation_test(const char *iban)
 
 //checking if the variable has been correctly assigned
 	if ( number == NULL ){
-		fprintf(stderr, "virtual memory exceeded!\n");
-		return RETURN_CODE_INVALID;
+		libcarramba_errstr = "variable number";
+		perror(libcarramba_errstr);
+		exit(EXIT_FAILURE);		
 	}
 
 //----------------------------------------------------------
@@ -107,9 +111,10 @@ int iban_validation_test(const char *iban)
 	char *trans = (char*)malloc((sz + l)*sizeof(char));
 
 	//checking if the variable has been correctly assigned
-	if ( trans == 0 ){
-		fprintf(stderr, "virtual memory exceeded!\n");
-		return RETURN_CODE_INVALID;	
+	if ( trans == NULL ){
+		libcarramba_errstr = "variable trans";
+		perror(libcarramba_errstr);
+		exit(EXIT_FAILURE);		
 	}	
 	trans[sz + l + 1] = 0;// set last character to 0
 

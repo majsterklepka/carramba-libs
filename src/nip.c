@@ -27,6 +27,8 @@
  *   along with Carramba Libs.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#define _GNU_SOURCE
+
 #include <carramba-libs.h>
 
 

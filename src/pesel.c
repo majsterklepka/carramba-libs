@@ -27,6 +27,8 @@
  *   along with Carramba Libs.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#define _GNU_SOURCE
+
 #include <carramba-libs.h>
 
 int pesel_validation_test(const char *pesel)
@@ -68,6 +70,12 @@ int pesel_validation_test(const char *pesel)
 //----------------------------------------------------------
 	
 	strcpy(input, pesel);
+	if(errno){
+		libcarramba_errstr = "strcpy(input, pesel)";
+		perror(libcarramba_errstr);
+		exit(EXIT_FAILURE);
+	}
+		
 
 //----------------------------------------------------------
 

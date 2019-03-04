@@ -27,6 +27,8 @@
  *   along with Carramba Libs.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#define _GNU_SOURCE
+
 #include <carramba-libs.h>
 
 int regon_validation_test(const char *regon)
@@ -75,6 +77,11 @@ int regon_validation_test(const char *regon)
 //----------------------------------------------------------
 	
 	strcpy(input,regon);
+	if(errno){
+		libcarramba_errstr = "strcpy(input, regon)";
+		perror(libcarramba_errstr);
+		exit(EXIT_FAILURE);
+	}
 
 //----------------------------------------------------------
 

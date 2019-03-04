@@ -530,8 +530,8 @@ File @code{carramba-libs.h} is library header file. What is inside?
 #define INFO_FORMAT_MARKDOWN        10
 #define INFO_FORMAT_MARKUP          20
 
-#define RETURN_CODE_VALID           1
-#define RETURN_CODE_INVALID         -1
+#define RETURN_CODE_VALID           0
+#define RETURN_CODE_INVALID         1
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -550,8 +550,8 @@ The most important definitions of constants are:
 
 @example
 
-#define   RETURN_CODE_VALID        1
-#define   RETURN_CODE_INVALID      -1
+#define   RETURN_CODE_VALID        0
+#define   RETURN_CODE_INVALID      1
 
 @end example
 

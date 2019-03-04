@@ -1,7 +1,7 @@
 This is carramba-libs.info, produced by makeinfo version 6.5 from
 carramba-libs.texi.
 
-This manual is for Carramba Libs Package (version 0.0.1, 3 March 2019)
+This manual is for Carramba Libs Package (version 0.0.1, 4 March 2019)
 
    Copyright © 2019 Pawel Sobotka.
 
@@ -519,8 +519,8 @@ File ‘carramba-libs.h’ is library header file.  What is inside?
      #define INFO_FORMAT_MARKDOWN        10
      #define INFO_FORMAT_MARKUP          20
 
-     #define RETURN_CODE_VALID           1
-     #define RETURN_CODE_INVALID         -1
+     #define RETURN_CODE_VALID           0
+     #define RETURN_CODE_INVALID         1
 
      #include <stdio.h>
      #include <stdlib.h>
@@ -538,8 +538,8 @@ some header files standard C library.
    The most important definitions of constants are:
 
 
-     #define   RETURN_CODE_VALID        1
-     #define   RETURN_CODE_INVALID      -1
+     #define   RETURN_CODE_VALID        0
+     #define   RETURN_CODE_INVALID      1
 
 
    Two all are return value of library function, next constants, are
@@ -1870,9 +1870,9 @@ Node: carramba_libs_info11570
 Node: carramba_libs_api_test12126
 Node: pkg-config support14867
 Node: Header file15761
-Node: Index17939
-Node: Function Index19091
-Node: Copying19811
+Node: Index17937
+Node: Function Index19089
+Node: Copying19809
 
 End Tag Table
 

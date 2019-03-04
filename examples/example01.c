@@ -38,7 +38,7 @@ więcej w pliku README.md w katalogu examples
 repozytorium majsterklepka/carramba-libs na GitHub.com
 */
 
-void show_answer(int rest, const char *input);
+void show_answer(int rest, const char *input, int errsv);
 
 int main(int argc, char **argv)
 {
@@ -74,9 +74,10 @@ int main(int argc, char **argv)
 	  jeśli jest to poprawny numer,
 	  jeśli nie, to zwracana jest wartość RETURN_CODE_INVALID
 	 */	 		
-	rest = carramba_libs_api_test(input);	
+	rest = carramba_libs_api_test(input);
+	int errsv = errno;	
 //---------------------------------------------------------------
-	show_answer(rest, input);//funkcja wyświetlająca odpowiedź na problem
+	show_answer(rest, input, errsv);//funkcja wyświetlająca odpowiedź na problem
 //---------------------------------------------------------------	
 	//zwalnianie pamięci gdy zajęta	
 	if (input)
@@ -92,7 +93,7 @@ int main(int argc, char **argv)
   z określeniem jaki to jest numer, gdy wartość zwracana
   jest równa RETURN_CODE_VALID
 */
-void show_answer(int rest, const char *input)
+void show_answer(int rest, const char *input, int errsv)
 {
 	int len = strlen(input);
 
@@ -104,6 +105,9 @@ void show_answer(int rest, const char *input)
 		printf("Numer: %s to prawidłowy numer REGON\n", input);
 	else if ( rest == RETURN_CODE_VALID && len > 14 )
 		printf("Prawidłowy numer IBAN!\n");
-	else
+	else if(rest == RETURN_CODE_INVALID)
 		printf("Wprowadziłeś nieprawidłowy numer!\nKończę działanie!\n");
+	else{
+		printf("W programie pojawił się błąd: %s", strerror(errsv));
+	}
 }		

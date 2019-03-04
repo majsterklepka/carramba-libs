@@ -52,7 +52,7 @@ const char *carramba_libs_info(int format)
 	{
 		asprintf(&info1, "<p><i>%s</i> build at: %s %s by <b>%s</b></p>", PACKAGE_STRING, build_date, build_time, BUILDER);
 
-		asprintf(&info2, "<p>Build machine: %s, %s, %s</p>", BUILD_VENDOR, BUILD_CPU, BUILD_OS);
+		asprintf(&info2, "<p>Build machine: %s</p>", BUILD);
  
 		asprintf(&info3, "<p>GitHub Package Repository URL:\n<br/><a href=\"%s\" title=\"GitHub Repository\">%s</a></p>", url, url);
 
@@ -64,7 +64,7 @@ const char *carramba_libs_info(int format)
 	{
 		asprintf(&info1, "_%s_ build at: %s %s by *%s*", PACKAGE_STRING, build_date, build_time, BUILDER);
 
-		asprintf(&info2, "*Build machine:* %s, %s, %s", BUILD_VENDOR, BUILD_CPU, BUILD_OS);
+		asprintf(&info2, "*Build machine:* %s", BUILD);
  
 		asprintf(&info3, "_GitHub Package Repository URL:_   [%s](%s \"GitHub Repository\")   ", url, url);
 
@@ -75,7 +75,7 @@ const char *carramba_libs_info(int format)
 	}else{
 		asprintf(&info1, "%s build at: %s %s by %s", PACKAGE_STRING, build_date, build_time, BUILDER);
 
-		asprintf(&info2, "Build machine: %s, %s, %s", BUILD_VENDOR, BUILD_CPU, BUILD_OS);
+		asprintf(&info2, "Build machine: %s", BUILD);
  
 		asprintf(&info3, "GitHub Package Repository URL:\n%s", url);
 		

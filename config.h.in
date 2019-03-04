@@ -1,19 +1,19 @@
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
+/* build */
+#undef BUILD
+
 /* maintainer/builder */
 #undef BUILDER
 
-/* build cpu */
-#undef BUILD_CPU
-
-/* build os */
-#undef BUILD_OS
-
-/* build vendor */
-#undef BUILD_VENDOR
-
 /* Define to 1 if you have the <dlfcn.h> header file. */
 #undef HAVE_DLFCN_H
+
+/* Define to 1 if you have the <errno.h> header file. */
+#undef HAVE_ERRNO_H
+
+/* Define to 1 if you have the <error.h> header file. */
+#undef HAVE_ERROR_H
 
 /* Define to 1 if you have the <inttypes.h> header file. */
 #undef HAVE_INTTYPES_H

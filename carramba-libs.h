@@ -33,13 +33,15 @@
 #define INFO_FORMAT_MARKDOWN	10
 #define INFO_FORMAT_MARKUP	20
 
-#define RETURN_CODE_VALID 	1
-#define	RETURN_CODE_INVALID	-1
+#define RETURN_CODE_VALID 	0
+#define	RETURN_CODE_INVALID	1
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <error.h>
+#include <errno.h>
 
 #ifndef NIP_C_
 #define NIP_C_		1
@@ -57,6 +59,7 @@
 #define IBAN_C_		1
 #endif
 
+char *libcarramba_errstr;
 
 int iban_validation_test(const char *iban);
 
