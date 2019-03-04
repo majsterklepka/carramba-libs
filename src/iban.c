@@ -6,13 +6,13 @@
  *     Author: Paweł Sobótka <48721262935pl@gmail.com>
  *  Copyright: © Paweł Sobótka, 2017-2019, all rights reserved
  *        URL: https://github.com/majsterklepka/carramba-libs.git
- *    Company: mgr inż. Paweł Sobótka, self-employed
+ *    Company: mgr inż. Paweł Sobótka, self-employed, individual creator
  *    Address: POLAND, masovian, Szydłowiec, 26-500
  * NIP(taxid): 799-169-51-12
  *
  * This file is part of Carramba Libs.
  *
- *   Foobar is free software: you can redistribute it and/or modify
+ *   Carramba Libs is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
  *   the Free Software Foundation; either version 3 of the License, or
  *   (at your option) any later version.
