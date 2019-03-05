@@ -593,7 +593,7 @@ PACKAGE_TARNAME='carramba-libs'
 PACKAGE_VERSION='0.0.1'
 PACKAGE_STRING='Carramba Libs 0.0.1'
 PACKAGE_BUGREPORT='starywandal@onet.pl'
-PACKAGE_URL=''
+PACKAGE_URL='http://github.com/majsterklepka/carramba-libs.git'
 
 ac_unique_file="main.c"
 # Factoring default headers for most tests.
@@ -658,12 +658,12 @@ FGREP
 EGREP
 GREP
 SED
+LIBTOOL
+LIB_VERSION
 host_os
 host_vendor
 host_cpu
 host
-LIBTOOL
-LIB_VERSION
 build_os
 build_vendor
 build_cpu
@@ -1449,6 +1449,7 @@ Use these variables to override the choices made by `configure' or to help
 it to find libraries and programs with nonstandard names/locations.
 
 Report bugs to <starywandal@onet.pl>.
+Carramba Libs home page: <http://github.com/majsterklepka/carramba-libs.git>.
 _ACEOF
 ac_status=$?
 fi
@@ -4916,6 +4917,8 @@ pkgconfigdir=$with_pkgconfigdir
 
 
 
+
+# resolving name of machine
 # Make sure we can run config.sub.
 $SHELL "$ac_aux_dir/config.sub" sun4 >/dev/null 2>&1 ||
   as_fn_error $? "cannot run $SHELL $ac_aux_dir/config.sub" "$LINENO" 5
@@ -4954,36 +4957,6 @@ IFS=$ac_save_IFS
 case $build_os in *\ *) build_os=`echo "$build_os" | sed 's/ /-/g'`;; esac
 
 
-
-#defining library version
-LIB_VERSION=0:1:0
-
-
-case `pwd` in
-  *\ * | *\	*)
-    { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Libtool does not cope well with whitespace in \`pwd\`" >&5
-$as_echo "$as_me: WARNING: Libtool does not cope well with whitespace in \`pwd\`" >&2;} ;;
-esac
-
-
-
-macro_version='2.4.6'
-macro_revision='2.4.6'
-
-
-
-
-
-
-
-
-
-
-
-
-
-ltmain=$ac_aux_dir/ltmain.sh
-
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking host system type" >&5
 $as_echo_n "checking host system type... " >&6; }
 if ${ac_cv_host+:} false; then :
@@ -5016,6 +4989,37 @@ host_os=$*
 IFS=$ac_save_IFS
 case $host_os in *\ *) host_os=`echo "$host_os" | sed 's/ /-/g'`;; esac
 
+
+
+#defining library version
+LIB_VERSION=0:1:0
+
+
+# library build options
+case `pwd` in
+  *\ * | *\	*)
+    { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Libtool does not cope well with whitespace in \`pwd\`" >&5
+$as_echo "$as_me: WARNING: Libtool does not cope well with whitespace in \`pwd\`" >&2;} ;;
+esac
+
+
+
+macro_version='2.4.6'
+macro_revision='2.4.6'
+
+
+
+
+
+
+
+
+
+
+
+
+
+ltmain=$ac_aux_dir/ltmain.sh
 
 # Backslashify metacharacters that are still active within
 # double-quoted strings.
@@ -13031,11 +13035,13 @@ fi
 { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_gmp_main" >&5
 $as_echo "$ac_cv_lib_gmp_main" >&6; }
 if test "x$ac_cv_lib_gmp_main" = xyes; then :
-  HAVE_GMP=1, LDLIBS="$LDLIBS -lgmp"
+  HAVE_GMP=1, LIBS="-lgmp $LIBS"
 else
   gmp not instaled!
 fi
 
+
+# naming bulilder options
 
 cat >>confdefs.h <<_ACEOF
 #define BUILDER "$USER"
@@ -13047,16 +13053,17 @@ cat >>confdefs.h <<_ACEOF
 _ACEOF
 
 
+# linker and compiler options
 LDFLAGS="-L/usr/lib"
-LDFLAGS="$LDFLAGS -Wl,-rpath -Wl,${libdir}/$PACKAGE"
-LIBS="$LDLIBS"
+LDFLAGS="-Wl,-rpath -Wl,${libdir}/$PACKAGE $LDFLAGS"
 CFLAGS="-I${includedir}/$PACKAGE"
 
+# support for pkg-config config file
 PACKAGE_LIBS="-lcarramba"
 PACKAGE_SUMMARY="$PACKAGE_NAME - library for validate IBAN, NIP, REGON, PESEL"
 PACKAGE_CFLAGS=$CFLAGS
 PACKAGE_LDFLAGS=$LDFLAGS
-PACKAGE_NAME="carramba-libs"
+PACKAGE_NAME=$PACKAGE
 
 
 # we need the expanded forms...
@@ -13330,10 +13337,10 @@ fi
 
 
 
+# creating config files
 ac_config_files="$ac_config_files Makefile"
 
 ac_config_files="$ac_config_files doc/Makefile"
-
 
 
 cat >confcache <<\_ACEOF
@@ -13930,7 +13937,8 @@ $config_headers
 Configuration commands:
 $config_commands
 
-Report bugs to <starywandal@onet.pl>."
+Report bugs to <starywandal@onet.pl>.
+Carramba Libs home page: <http://github.com/majsterklepka/carramba-libs.git>."
 
 _ACEOF
 cat >>$CONFIG_STATUS <<_ACEOF || ac_write_fail=1

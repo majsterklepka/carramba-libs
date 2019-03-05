@@ -1,7 +1,7 @@
 This is carramba-libs.info, produced by makeinfo version 6.5 from
 carramba-libs.texi.
 
-This manual is for Carramba Libs Package (version 0.0.1, 4 March 2019)
+This manual is for Carramba Libs Package (version 0.0.1, 5 March 2019)
 
    Copyright © 2019 Pawel Sobotka.
 
@@ -27,9 +27,9 @@ Public License for more details.  You should have received a copy of the
 GNU General Public License along with Carramba Libs Package.  If not,
 see <<http://www.gnu.org/licenses/>>.
 
-INFO-DIR-SECTION GNU libraries
+INFO-DIR-SECTION MajsterKlepka Library
 START-INFO-DIR-ENTRY
-* carramba-libs: (carramba-libs)			library to validate personal number  PESEL, NIP, REGON, IBAN
+* Carramba Libs: (carramba-libs.info).     open-source library
 END-INFO-DIR-ENTRY
 
 
@@ -38,9 +38,8 @@ File: carramba-libs.info,  Node: Top,  Next: A piece of theory,  Up: (dir)
 Carramba Libs API Reference
 ***************************
 
-Carramba Libs API Reference Manual.  Carramba Libs is a library prepared
-for check correctness imoprtant personal numbers like PESEL, NIP, REGON
-and IBAN.
+Carramba Libs is a library prepared for check correctness imoprtant
+personal numbers like PESEL, NIP, REGON and IBAN.
 
 * Menu:
 
@@ -1854,25 +1853,25 @@ please read <https://www.gnu.org/licenses/why-not-lgpl.html>.
 
 
 Tag Table:
-Node: Top1475
-Node: A piece of theory2142
-Node: PESEL number2648
-Node: NIP number3265
-Node: REGON number4158
-Node: IBAN number4772
-Node: API function6424
-Node: iban_validation_test7279
-Node: regon_validation_test8243
-Node: pesel_validation_test9935
-Node: nip_validation_test10858
-Node: carramba_libs_version11229
-Node: carramba_libs_info11570
-Node: carramba_libs_api_test12126
-Node: pkg-config support14867
-Node: Header file15761
-Node: Index17937
-Node: Function Index19089
-Node: Copying19809
+Node: Top1450
+Node: A piece of theory2080
+Node: PESEL number2586
+Node: NIP number3203
+Node: REGON number4096
+Node: IBAN number4710
+Node: API function6362
+Node: iban_validation_test7217
+Node: regon_validation_test8181
+Node: pesel_validation_test9873
+Node: nip_validation_test10796
+Node: carramba_libs_version11167
+Node: carramba_libs_info11508
+Node: carramba_libs_api_test12064
+Node: pkg-config support14805
+Node: Header file15699
+Node: Index17875
+Node: Function Index19027
+Node: Copying19747
 
 End Tag Table
 

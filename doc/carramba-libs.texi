@@ -9,6 +9,11 @@
 @documentencoding UTF-8
 @c %**end of header
 
+@dircategory MajsterKlepka Library
+@direntry
+* Carramba Libs: (carramba-libs.info).     open-source library
+@end direntry
+
 @copying
 This manual is for @value{PROGNAME} (version @value{VERSION}, @value{UPDATED})
 @sp 1
@@ -36,11 +41,6 @@ You should have received a copy of the GNU General Public License
 along with @value{PROGNAME}.  If not, see <@uref{http://www.gnu.org/licenses/}>.
 
 @end copying
-
-@dircategory GNU libraries
-@direntry
-* carramba-libs: (carramba-libs)			library to validate personal number  PESEL, NIP, REGON, IBAN                    
-@end direntry
 
 @titlepage
 @title Carramba Libs API Reference Manual
@@ -70,7 +70,7 @@ What is Carramba Libs? It is a library written for validate personal number like
 @top Carramba Libs API Reference
 @cindex About this manual
 
-Carramba Libs API Reference Manual. Carramba Libs is a library prepared for check correctness imoprtant personal numbers like PESEL, NIP, REGON and IBAN.
+Carramba Libs is a library prepared for check correctness imoprtant personal numbers like PESEL, NIP, REGON and IBAN.
  
 @menu
 * A piece of theory::   introduction to theory of validation personal numbers.

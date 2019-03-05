@@ -5,7 +5,7 @@
  *    License: GPLv3 or later
  *     Author: Paweł Sobótka <48721262935pl@gmail.com>
  *  Copyright: © Paweł Sobótka, 2017-2019, all rights reserved
- *        URL: https://github.com/majsterklepka/carramba-libs.git
+ *        PACKAGE_URL: https://github.com/majsterklepka/carramba-libs.git
  *    Company: mgr inż. Paweł Sobótka, self-employed
  *    Address: POLAND, masovian, Szydłowiec, 26-500
  * NIP(taxid): 799-169-51-12
@@ -43,10 +43,9 @@ const char *carramba_libs_version()
 const char *carramba_libs_info(int format)
 {
 	char *info1, *info2, *line;
-	char *info3, *info4, *url;
+	char *info3, *info4;
 	char *output;
 	line = ">--------*INFO*--------<";
-	url = "https://github.com/majsterklepka/carramba-libs.git";
 	const char *license[] = {"This program is free software: you can redistribute it and/or modify", "it under the terms of the GNU General Public License as published by", "the Free Software Foundation, either version 3 of the License, or", "(at your option) any later version.", "This program is distributed in the hope that it will be useful,", "but WITHOUT ANY WARRANTY; without even the implied warranty of", "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the", "GNU General Public License for more details.", "You should have received a copy of the GNU General Public License", "along with this program.  If not, see <http://www.gnu.org/licenses/>"};
 	if ( format == INFO_FORMAT_MARKUP )
 	{
@@ -54,7 +53,7 @@ const char *carramba_libs_info(int format)
 
 		asprintf(&info2, "<p>Build machine: %s</p>", BUILD);
  
-		asprintf(&info3, "<p>GitHub Package Repository URL:\n<br/><a href=\"%s\" title=\"GitHub Repository\">%s</a></p>", url, url);
+		asprintf(&info3, "<p>GitHub Package Repository:\n<br/><a href=\"%s\" title=\"GitHub Repository\">%s</a></p>", PACKAGE_URL, PACKAGE_URL);
 
 		asprintf(&info4, "<p>%s<br/>\n%s<br/>\n%s<br/>\n%s</p>\n<p>%s<br/>\n%s<br/>\n%s<br/>\n%s</p>\n<p>%s<br/>%s</p>", license[0],license[1],license[2], license[3], license[4],license[5],license[6], license[7], license[8],license[9]);
 
@@ -66,7 +65,7 @@ const char *carramba_libs_info(int format)
 
 		asprintf(&info2, "*Build machine:* %s", BUILD);
  
-		asprintf(&info3, "_GitHub Package Repository URL:_   [%s](%s \"GitHub Repository\")   ", url, url);
+		asprintf(&info3, "_GitHub Package Repository:_     [%s](%s \"GitHub Repository\")   ", PACKAGE_URL, PACKAGE_URL);
 
 		asprintf(&info4, "%s  \n%s  \n%s  \n%s\n\n%s  \n%s  \n%s  \n%s\n\n%s  \n%s", license[0],license[1],license[2], license[3], license[4],license[5],license[6], license[7], license[8],license[9]);
 
@@ -77,7 +76,7 @@ const char *carramba_libs_info(int format)
 
 		asprintf(&info2, "Build machine: %s", BUILD);
  
-		asprintf(&info3, "GitHub Package Repository URL:\n%s", url);
+		asprintf(&info3, "GitHub Package Repository:\n%s", PACKAGE_URL);
 		
 		asprintf(&info4, "%s\n%s\n%s\n%s\n\n%s\n%s\n%s\n%s\n\n%s\n%s", license[0],license[1],license[2], license[3], license[4],license[5],license[6], license[7], license[8],license[9]);
 		
