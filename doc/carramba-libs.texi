@@ -9,15 +9,21 @@
 @documentencoding UTF-8
 @c %**end of header
 
-@dircategory MajsterKlepka Library
-@direntry
-* Carramba Libs: (carramba-libs.info).     open-source library
+@dircategory Carramba Libs 
+@direntry 
+* A piece of theory:(carramba-libs)A piece of theory.
+* API function:(carramba-libs)API function.
+* Header file:(carramba-libs)Header file.
+* pkg-config support:(carramba-libs)pkg-config support.
+* Index:(carramba-libs)Index.
+* Function Index:(carramba-libs)Function Index.
+* Copying:(carramba-libs)Copying.
 @end direntry
 
 @copying
 This manual is for @value{PROGNAME} (version @value{VERSION}, @value{UPDATED})
 @sp 1
-Copyright @copyright{}  2019  Pawel Sobotka.
+Copyright @copyright{}  2017-2019  Pawel Sobotka.
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3
@@ -117,7 +123,7 @@ if sum == 10; then sum = 0; => must be y = 0;
 
 if sum == y; then return NUMBER_VALID; else return NUMBER_INVALID;
 
-weight[] = @{1,3,7,9,1,1,3,7,9,1@}; => balance
+weight[] = @{1,3,7,9,1,1,3,7,9,1@}; @result{} balance
 @end example
 
 @node NIP number, REGON number, PESEL number, A piece of theory
@@ -173,16 +179,16 @@ The calculation is made as for the other numbers.
 To verify the correctness of the IBAN number, its check sum should be calculated. In Poland, the IBAN number consists of 28 characters, the first two being the country code (PL). The next two characters are the checksum (items 3 and 4) and the remaining ones are the correct bank account number. The account number is up to 30 alphanumeric characters, it is the bank's basic account number (BBAN), some of which must identify the bank. In Poland, BBAN consists of 24 digits, of which 8 digits form the bank's settlement number and the remaining 16 digits specify the customer's account number.
 
 @example
-@b{PLkk AAAAAAAA BBBBBBBBBBBBBBBB} => Polish IBAN number
+@b{PLkk AAAAAAAA BBBBBBBBBBBBBBBB} @result{} Polish IBAN number
 
-@b{PL} => country code according to the standard
+@b{PL} @result{} country code according to the standard
 @uref{http://pl.wikipedia.org/wiki/ISO_3166-1, ISO-3166-1}
 
-@b{kk} => checksum
+@b{kk} @result{} checksum
 
-@b{AAAAAAAA} => number identifying the bank
+@b{AAAAAAAA} @result{} number identifying the bank
 
-@b{BBBBBBBBBBBBBBBB} => client account number
+@b{BBBBBBBBBBBBBBBB} @result{} client account number
 @end example
 
 The IBAN number is written without spaces.
@@ -221,7 +227,7 @@ const char *carramba_libs_info(int format)
 int carramba_libs_api_test(const char *number)
 @end example
 
-These function are provided by @value{PROGNAME}, below I will provide a more detailed description of each function. 
+These functions are provided by @value{PROGNAME}, below I will provide a more detailed description of each function. 
 
 @node iban_validation_test, regon_validation_test, API function
 @section IBAN validation function
@@ -472,9 +478,7 @@ void show_answer(int @var{rest},  const char *@var{input})
 To build type:
 
 @example
-gcc example01.c -o example01 -lreadline \
- `pkg-config --libs carramba-libs --cflags carramba-libs \ 
---with-path=$@{datadir@}/pkgconfig`
+gcc example01.c -o example01 -lreadline @*`pkg-config --libs carramba-libs --cflags carramba-libs @*--with-path=$@{datadir@}/pkgconfig`
 @end example
 
 @node pkg-config support, Header file, API function, Top
@@ -509,8 +513,7 @@ Cflags: -I$@{pkgincludedir@}
 To compile, just use code: 
 @example
 
-gcc @dots{} `pkg-config --libs carramba-libs --cflags \
- carramba-libs --with-path=$@{datadir@}/pkgconfig`
+gcc @dots{} `pkg-config --libs carramba-libs --cflags @* carramba-libs --with-path=$@{datadir@}/pkgconfig`
 
 @end example
 
